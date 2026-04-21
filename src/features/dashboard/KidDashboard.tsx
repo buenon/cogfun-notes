@@ -62,7 +62,7 @@ export function KidDashboard() {
                 className="bg-white p-4 rounded-3xl shadow-sm border border-slate-50 flex items-center justify-between"
               >
                 <div className="flex items-center gap-4">
-                  <span className="text-4xl bg-slate-50 p-3 rounded-2xl">{agent.emoji}</span>
+                  <img src={agent.image} alt={agent.name} className="w-16 h-16 object-contain bg-slate-50 p-2 rounded-2xl" />
                   <span className="font-bold text-lg text-slate-700">{agent.name}</span>
                 </div>
                 <div className="text-2xl font-black px-4 text-slate-400">

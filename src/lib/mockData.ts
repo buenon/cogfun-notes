@@ -1,4 +1,7 @@
 import { DICTIONARY } from './dictionary';
+import mrStop from '../assets/mr-stop.png';
+import mrCheck from '../assets/mr-check.png';
+import mrEffort from '../assets/mr-effort.png';
 
 export type KidProfile = {
   id: string;
@@ -13,6 +16,7 @@ export type Agent = {
   id: AgentId;
   name: string;
   emoji: string;
+  image: string;
   theme: string;
   presets: string[];
 };
@@ -29,6 +33,7 @@ export const AGENTS: Record<AgentId, Agent> = {
     id: 'stop',
     name: DICTIONARY.agents.stop.name,
     emoji: '🐳',
+    image: mrStop,
     theme: 'stop',
     presets: DICTIONARY.agents.stop.presets,
   },
@@ -36,6 +41,7 @@ export const AGENTS: Record<AgentId, Agent> = {
     id: 'check',
     name: DICTIONARY.agents.check.name,
     emoji: '🦉',
+    image: mrCheck,
     theme: 'check',
     presets: DICTIONARY.agents.check.presets,
   },
@@ -43,6 +49,7 @@ export const AGENTS: Record<AgentId, Agent> = {
     id: 'effort',
     name: DICTIONARY.agents.effort.name,
     emoji: '🦖',
+    image: mrEffort,
     theme: 'effort',
     presets: DICTIONARY.agents.effort.presets,
   },

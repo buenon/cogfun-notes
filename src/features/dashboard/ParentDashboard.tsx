@@ -68,8 +68,8 @@ export function ParentDashboard() {
                 agent.theme === 'effort' && "bg-emerald-100 text-emerald-900 border-emerald-200 hover:bg-emerald-50",
               )}
             >
-              <div className="text-6xl me-6 z-10 bg-white/40 p-4 rounded-2xl">
-                {agent.emoji}
+              <div className="me-6 z-10 bg-white/40 p-4 rounded-2xl w-32 h-32 flex items-center justify-center shrink-0">
+                <img src={agent.image} alt={agent.name} className="w-24 h-24 object-contain" />
               </div>
               <div className="text-start z-10">
                 <h2 className="text-2xl font-black mb-1">{agent.name}</h2>
@@ -102,7 +102,7 @@ export function ParentDashboard() {
               
               <div className="flex items-center justify-between mb-8">
                 <div className="flex items-center gap-3">
-                  <span className="text-4xl bg-slate-100 p-2 rounded-xl">{selectedAgent.emoji}</span>
+                  <img src={selectedAgent.image} alt={selectedAgent.name} className="w-16 h-16 object-contain bg-slate-100 p-2 rounded-xl" />
                   <h3 className="text-2xl font-bold text-slate-800">{selectedAgent.name}</h3>
                 </div>
                 <button 
