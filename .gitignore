@@ -22,3 +22,16 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# Yarn 4
+.yarn/*
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/sdks
+!.yarn/versions
+
+# If you ARE NOT using Zero-Installs (recommended for most):
+.pnp.*
+.yarn/cache
+.yarn/unplugged
