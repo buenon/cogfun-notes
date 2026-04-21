@@ -25,6 +25,7 @@ export function useNotes(kidId: string = MOCK_PROFILE.id) {
   // UI state for logging
   const [selectedAgent, setSelectedAgent] = useState<Agent | null>(null);
   const [showSuccess, setShowSuccess] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   // Fetching
   useEffect(() => {
@@ -107,8 +108,9 @@ export function useNotes(kidId: string = MOCK_PROFILE.id) {
   // Logging actions
   const logNote = useCallback(
     async (preset: string) => {
-      if (!selectedAgent) return;
+      if (!selectedAgent || isSubmitting) return;
 
+      setIsSubmitting(true);
       try {
         await addDoc(collection(db, "notes"), {
           kidId: kidId,
@@ -122,15 +124,20 @@ export function useNotes(kidId: string = MOCK_PROFILE.id) {
         setTimeout(() => {
           setShowSuccess(false);
           setSelectedAgent(null);
+          setIsSubmitting(false);
         }, SUCCESS_DISPLAY_MS);
       } catch (error) {
         console.error("Error logging note:", error);
+        setIsSubmitting(false);
       }
     },
-    [selectedAgent, kidId],
+    [selectedAgent, kidId, isSubmitting],
   );
 
-  const clearSelection = useCallback(() => setSelectedAgent(null), []);
+  const clearSelection = useCallback(() => {
+    setSelectedAgent(null);
+    setIsSubmitting(false);
+  }, []);
 
   const markAsRead = useCallback(async (noteId: string) => {
     try {
@@ -152,6 +159,7 @@ export function useNotes(kidId: string = MOCK_PROFILE.id) {
     // Logging state
     selectedAgent,
     showSuccess,
+    isSubmitting,
     // Methods
     selectAgent: setSelectedAgent,
     clearSelection,

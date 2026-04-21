@@ -10,8 +10,14 @@ import {
 } from "@components";
 
 export function ParentDashboard() {
-  const { selectedAgent, showSuccess, selectAgent, clearSelection, logNote } =
-    useNotes();
+  const {
+    selectedAgent,
+    showSuccess,
+    isSubmitting,
+    selectAgent,
+    clearSelection,
+    logNote,
+  } = useNotes();
 
   return (
     <motion.div
@@ -42,6 +48,7 @@ export function ParentDashboard() {
         agent={selectedAgent}
         onSelectPreset={logNote}
         onClose={clearSelection}
+        isLoading={isSubmitting}
       />
 
       <SuccessOverlay
