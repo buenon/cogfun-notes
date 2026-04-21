@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { D, MOCK_PROFILE } from "@lib";
-import { useNoteLogger } from "@hooks";
+import { useNotes } from "@hooks";
 import {
   AgentGrid,
   DashboardHeader,
@@ -11,7 +11,7 @@ import {
 
 export function ParentDashboard() {
   const { selectedAgent, showSuccess, selectAgent, clearSelection, logNote } =
-    useNoteLogger();
+    useNotes();
 
   return (
     <motion.div

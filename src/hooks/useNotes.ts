@@ -1,17 +1,26 @@
-import { useMemo, useState, useEffect } from "react";
+import { useMemo, useState, useEffect, useCallback } from "react";
 import {
   collection,
   query,
   orderBy,
   onSnapshot,
   where,
+  addDoc,
 } from "firebase/firestore";
-import { db, type SuccessNote, type AgentId } from "@lib";
+import { db, MOCK_PROFILE, type SuccessNote, type AgentId, type Agent } from "@lib";
 
-export function useNotes(kidId: string = "bar") {
+const SUCCESS_DISPLAY_MS = 2000;
+
+export function useNotes(kidId: string = MOCK_PROFILE.id) {
+  // Data state
   const [notes, setNotes] = useState<SuccessNote[]>([]);
   const [loading, setLoading] = useState(true);
 
+  // UI state for logging
+  const [selectedAgent, setSelectedAgent] = useState<Agent | null>(null);
+  const [showSuccess, setShowSuccess] = useState(false);
+
+  // Fetching
   useEffect(() => {
     const q = query(
       collection(db, "notes"),
@@ -39,6 +48,7 @@ export function useNotes(kidId: string = "bar") {
     return () => unsubscribe();
   }, [kidId]);
 
+  // Derived stats
   const stats = useMemo(() => {
     const counts: Record<AgentId, number> = {
       stop: 0,
@@ -59,5 +69,46 @@ export function useNotes(kidId: string = "bar") {
     return notes.filter((n) => !n.isRead).length;
   }, [notes]);
 
-  return { notes, stats, unreadCount, loading };
+  // Logging actions
+  const logNote = useCallback(
+    async (preset: string) => {
+      if (!selectedAgent) return;
+
+      try {
+        await addDoc(collection(db, "notes"), {
+          kidId: kidId,
+          agentId: selectedAgent.id,
+          text: preset,
+          isRead: false,
+          createdAt: Date.now(),
+        });
+
+        setShowSuccess(true);
+        setTimeout(() => {
+          setShowSuccess(false);
+          setSelectedAgent(null);
+        }, SUCCESS_DISPLAY_MS);
+      } catch (error) {
+        console.error("Error logging note:", error);
+      }
+    },
+    [selectedAgent, kidId],
+  );
+
+  const clearSelection = useCallback(() => setSelectedAgent(null), []);
+
+  return {
+    // Data
+    notes,
+    stats,
+    unreadCount,
+    loading,
+    // Logging state
+    selectedAgent,
+    showSuccess,
+    // Methods
+    selectAgent: setSelectedAgent,
+    clearSelection,
+    logNote,
+  };
 }
