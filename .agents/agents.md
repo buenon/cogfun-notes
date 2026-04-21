@@ -2,15 +2,15 @@
 
 ## @Architect
 
-- **Focus:** Folder structure and Type safety.
-- **Task:** Ensure the `SuccessNote` type correctly handles `kidId` and `agentType`.
+- **Focus:** Data Schema and Type Safety.
+- **Task:** Refine the Firestore data structure to support multiple kids and ensure strict TypeScript interfaces for all database documents.
 
 ## @Developer
 
-- **Focus:** Logic and State Management.
-- **Task:** Implement the "Context Provider" that will mimic a database until we move to Firebase. Use a `useLocalStorage` hook to keep data persistent during development.
+- **Focus:** Backend Integration and Performance.
+- **Task:** Implement offline persistence for Firestore and optimize the `useNotes` hook to handle larger data sets efficiently.
 
 ## @UI-Designer
 
-- **Focus:** Component styling and animations.
-- **Task:** Create the "Success Note" component. It should look like a physical note/sticky-note.
+- **Focus:** Micro-interactions and Polish.
+- **Task:** Design and implement the "Mark as Read" animation (e.g., note crumbling or fading away) and refine the "Success" confirmation overlay for better impact.

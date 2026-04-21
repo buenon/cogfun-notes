@@ -3,18 +3,37 @@
 ## Current Status
 
 - [x] Vite + TS Scaffolded.
-- [ ] Phase 1: Boilerplate Cleanup & Theme Configuration.
-- [ ] Phase 2: Feature Scaffolding (src/features/parent, src/features/kid).
-- [ ] Phase 3: "Kid Selector" & Navigation Logic.
-- [ ] Phase 4: Mock Data State (using React Context) to test the flow.
+- [x] Firebase Firestore Integrated (Real-time data persistence).
+- [x] Path Aliases Configured (`@lib`, `@components`, `@hooks`, `@pages`).
+- [x] Core UI Components Built (`BottomSheet`, `AgentGrid`, `SuccessOverlay`).
+- [x] Parent Dashboard (Zero-Friction logging).
+- [x] Kid Dashboard (Success viewing & Stats).
+- [x] RTL Support (Hebrew localization).
 
 ## Functional Requirements
 
-- **Profiles:** Two distinct profiles for the sons. Each needs a name and a chosen avatar/color.
-- **Presets:** The agent must implement the CogFun preset list in a searchable or quick-tap list.
-- **The "Box":** A list view for kids that marks items as "Read" (archived) only after they click it.
+- **Profiles:** Mock profile for "Bar" is active. Multi-profile support is in the roadmap.
+- **Presets:** CogFun preset lists for Mr. Stop, Mr. Check, and Mr. Effort are fully implemented.
+- **The "Box":** Kid dashboard displays "new" notes and lifetime counts.
+- **Real-time:** Updates reflect instantly across devices via Firestore `onSnapshot`.
 
 ## Next Steps
 
-- Execute @Architect to set up the directory structure.
-- Execute @UI-Designer to set up Tailwind colors for the three "Mr." agents.
+- [x] Kid Dashboard: Unread count, agent stats, and unread notes list.
+- [x] Kid Dashboard: "Mark as Read" functionality.
+- [x] Kid Dashboard: Full history view (All Notes page).
+
+## Functional Requirements
+
+- **Profiles:** Mock profile for "Bar" is active. Multi-profile support is in the roadmap.
+- **Presets:** CogFun preset lists for Mr. Stop, Mr. Check, and Mr. Effort are fully implemented.
+- **The "Box":** Kid dashboard displays "new" notes and lifetime counts. "Mark as Read" removes notes from the primary list.
+- **History:** Full list of all historical successes available in a dedicated view.
+- **Real-time:** Updates reflect instantly across devices via Firestore `onSnapshot`.
+
+## Next Steps
+
+- [ ] Add "Custom Note" entry in Parent Dashboard.
+- [ ] Implement Multi-Kid profile selection.
+- [ ] Performance optimization: Memoize components and optimize Firestore queries.
+- [ ] Polish animations: Enhancing the "sliding into the box" experience with Framer Motion.
