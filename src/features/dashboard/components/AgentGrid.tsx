@@ -1,6 +1,6 @@
-import type { Agent } from '../../../lib/types';
-import { AGENTS } from '../../../lib/mockData';
-import { AgentCard } from './AgentCard';
+import type { Agent } from "../../../lib/types";
+import { AGENTS } from "../../../lib/mockData";
+import { AgentCard } from "./AgentCard";
 
 type AgentGridProps = {
   onSelectAgent: (agent: Agent) => void;
@@ -8,7 +8,7 @@ type AgentGridProps = {
 
 export function AgentGrid({ onSelectAgent }: AgentGridProps) {
   return (
-    <div className="flex flex-col gap-6 flex-1 justify-center pb-12">
+    <div className="flex flex-col gap-6 flex-1 justify-center">
       {Object.values(AGENTS).map((agent, index) => (
         <AgentCard
           key={agent.id}

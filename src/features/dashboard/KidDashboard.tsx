@@ -1,10 +1,10 @@
-import { motion } from 'framer-motion';
-import { Inbox, Award } from 'lucide-react';
-import { DashboardHeader } from '../../components/DashboardHeader';
-import { AgentStatCard } from './components/AgentStatCard';
-import { AGENTS, MOCK_PROFILE } from '../../lib/mockData';
-import { DICTIONARY } from '../../lib/dictionary';
-import type { AgentId } from '../../lib/types';
+import { motion } from "framer-motion";
+import { Inbox, Award } from "lucide-react";
+import { DashboardHeader } from "../../components/DashboardHeader";
+import { AgentStatCard } from "./components/AgentStatCard";
+import { AGENTS, MOCK_PROFILE } from "../../lib/mockData";
+import { DICTIONARY } from "../../lib/dictionary";
+import type { AgentId } from "../../lib/types";
 
 // TODO: Replace with real data source
 const MOCK_STATS: Record<AgentId, number> = { stop: 12, check: 8, effort: 15 };
@@ -22,7 +22,6 @@ export function KidDashboard() {
         profileName={MOCK_PROFILE.name}
         profileAvatar={MOCK_PROFILE.avatar}
         profileBgColor={MOCK_PROFILE.bgColor}
-        label={DICTIONARY.kidDashboard.box}
       />
 
       <div className="flex-1 p-6 max-w-md mx-auto w-full flex flex-col gap-8">

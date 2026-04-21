@@ -1,9 +1,8 @@
-export type AgentId = 'stop' | 'check' | 'effort';
+export type AgentId = "stop" | "check" | "effort";
 
 export type Agent = {
   id: AgentId;
   name: string;
-  emoji: string;
   image: string;
   presets: string[];
 };
