@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import { ArrowRight, History } from "lucide-react";
 import { useNavigate } from "react-router-dom";
-import { MOCK_PROFILE } from "@lib";
+import { MOCK_PROFILE, D } from "@lib";
 import { useNotes } from "@hooks";
 import { NotesList, DashboardHeader } from "@components";
 
@@ -31,6 +31,15 @@ export function AllNotesPage() {
             <ArrowRight size={20} />
             <span>חזרה</span>
           </button>
+        </div>
+
+        <div className="flex items-center gap-3 mb-2">
+          <div className="bg-amber-100 text-amber-600 p-2 rounded-xl">
+            <History size={24} />
+          </div>
+          <h1 className="text-2xl font-black text-slate-800">
+            היסטוריית הצלחות
+          </h1>
         </div>
 
         {loading ? (

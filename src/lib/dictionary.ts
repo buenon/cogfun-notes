@@ -11,7 +11,7 @@ export const D = {
     headerCheeringFor: "על מה אנחנו מריעים היום?",
     tapAgent: "לחץ על סוכן כדי לרשום הצלחה.",
     logMoment: "רשום רגע של",
-    customNote: "+ כתוב פתק אישי...",
+    customNote: "כתוב פתק אישי...",
     successLogged: "!הצלחה נרשמה",
   },
   kidDashboard: {

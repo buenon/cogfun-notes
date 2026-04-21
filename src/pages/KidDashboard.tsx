@@ -36,7 +36,7 @@ export function KidDashboard() {
             <Inbox size={40} />
           </div>
           <div>
-            <h2 className="text-4xl font-black text-slate-800">
+            <h2 className="text-4xl font-black font-display text-slate-800">
               {loading ? "..." : unreadCount}
             </h2>
             <p className="text-slate-500 font-bold text-lg">
@@ -69,7 +69,7 @@ export function KidDashboard() {
         {/* View All Button */}
         <button
           onClick={() => navigate("/kid/notes")}
-          className="mt-4 flex items-center justify-center gap-2 p-5 bg-slate-200 text-slate-600 rounded-3xl font-black text-lg hover:bg-slate-300 transition-colors"
+          className="mt-4 flex items-center justify-center gap-2 p-5 bg-slate-200 text-slate-600 rounded-3xl font-black font-display text-lg hover:bg-slate-300 transition-colors"
         >
           <span>לכל הפתקים שלי</span>
           <ArrowLeft size={20} />

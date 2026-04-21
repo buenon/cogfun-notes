@@ -23,7 +23,9 @@ export function AgentStatCard({ agent, count, index }: AgentStatCardProps) {
         />
         <span className="font-bold text-lg text-slate-700">{agent.name}</span>
       </div>
-      <div className="text-2xl font-black px-4 text-slate-400">{count}</div>
+      <div className="text-2xl font-black font-display px-4 text-slate-400">
+        {count}
+      </div>
     </motion.div>
   );
 }

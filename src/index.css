@@ -17,7 +17,8 @@
   --color-effort-DEFAULT: #4ade80;
   --color-effort-dark: #16a34a;
 
-  --font-sans: 'Nunito', 'Inter', system-ui, sans-serif;
+  --font-sans: "Heebo", system-ui, sans-serif;
+  --font-display: "Fredoka", system-ui, sans-serif;
 }
 
 @layer base {
@@ -25,5 +26,14 @@
     @apply bg-slate-50 text-slate-800 antialiased font-sans;
     margin: 0;
     min-height: 100vh;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply font-display tracking-tight;
   }
 }

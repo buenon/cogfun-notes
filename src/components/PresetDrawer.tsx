@@ -45,7 +45,12 @@ export function PresetDrawer({
         )
       }
     >
-      <div className={cn("flex flex-col gap-3 transition-opacity", isLoading && "opacity-60 pointer-events-none")}>
+      <div
+        className={cn(
+          "flex flex-col gap-3 transition-opacity",
+          isLoading && "opacity-60 pointer-events-none",
+        )}
+      >
         <div className="flex flex-col gap-2">
           {agent?.presets.map((preset, index) => (
             <button
@@ -63,20 +68,20 @@ export function PresetDrawer({
         </div>
 
         <div className="mt-4 pt-4 border-t border-slate-100">
-          <div className="relative">
+          <div className="relative flex items-center">
             <input
               type="text"
               disabled={isLoading}
               value={customText}
               onChange={(e) => setCustomText(e.target.value)}
               placeholder={D.parentDashboard.customNote}
-              className="w-full p-4 pr-14 rounded-2xl bg-slate-50 border-2 border-slate-100 focus:border-indigo-500 focus:bg-white outline-none font-semibold text-lg transition-all disabled:cursor-not-allowed"
+              className="w-full p-4 ps-14 rounded-2xl bg-slate-50 border-2 border-slate-100 focus:border-indigo-500 focus:bg-white outline-none font-semibold text-lg transition-all disabled:cursor-not-allowed"
               onKeyDown={(e) => e.key === "Enter" && handleSubmitCustom()}
             />
             <button
               onClick={handleSubmitCustom}
               disabled={!customText.trim() || isLoading}
-              className="absolute left-2 top-2 bottom-2 w-10 flex items-center justify-center bg-indigo-600 text-white rounded-xl disabled:bg-slate-200 disabled:text-slate-400 transition-colors"
+              className="absolute start-2 top-1/2 -translate-y-1/2 w-10 h-10 flex items-center justify-center bg-indigo-600 text-white rounded-xl disabled:bg-slate-200 disabled:text-slate-400 transition-colors shadow-sm active:scale-95 transition-transform"
             >
               {isLoading ? (
                 <Loader2 size={20} className="animate-spin" />
