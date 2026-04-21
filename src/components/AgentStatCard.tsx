@@ -19,7 +19,11 @@ export function AgentStatCard({ agent, count, index }: AgentStatCardProps) {
         <img
           src={agent.image}
           alt={agent.name}
-          className="w-16 h-16 object-contain bg-slate-50 p-2 rounded-2xl"
+          width={64}
+          height={64}
+          loading="eager"
+          decoding="sync"
+          className="w-16 h-16 object-contain aspect-square bg-slate-50 p-2 rounded-2xl"
         />
         <span className="font-bold text-lg text-slate-700">{agent.name}</span>
       </div>

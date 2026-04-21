@@ -36,4 +36,20 @@
   h6 {
     @apply font-display tracking-tight;
   }
+
+  img {
+    /* Prevent fractional pixel rendering glitches during resizes */
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: auto;
+
+    /* Force integer pixel alignment and stable hardware layer */
+    backface-visibility: hidden;
+    transform: translateZ(0);
+
+    /* Optimization for scrolling and resizing */
+    content-visibility: auto;
+
+    -webkit-user-drag: none;
+    user-select: none;
+  }
 }

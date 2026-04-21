@@ -30,7 +30,11 @@ export function AgentCard({ agent, index, onSelect }: AgentCardProps) {
         <img
           src={agent.image}
           alt={agent.name}
-          className="w-24 h-24 object-contain"
+          width={96}
+          height={96}
+          loading="eager"
+          decoding="sync"
+          className="w-24 h-24 object-contain aspect-square"
         />
       </div>
       <div className="text-start z-10">

@@ -38,7 +38,11 @@ export function NoteItem({
         <img
           src={agent.image}
           alt={agent.name}
-          className="w-8 h-8 object-contain"
+          width={32}
+          height={32}
+          loading="eager"
+          decoding="sync"
+          className="w-8 h-8 object-contain aspect-square"
         />
       </div>
 
