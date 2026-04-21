@@ -1,4 +1,4 @@
-export const DICTIONARY = {
+export const D = {
   app: {
     title: "CogFun",
     subtitle: "קופסת ההצלחות הדיגיטלית",

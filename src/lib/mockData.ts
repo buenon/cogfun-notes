@@ -1,12 +1,12 @@
 import type { Agent, AgentId, KidProfile } from "./types";
-import { DICTIONARY } from "./dictionary";
+import { D } from "./dictionary";
 import mrStop from "../assets/mr-stop.png";
 import mrCheck from "../assets/mr-check.png";
 import mrEffort from "../assets/mr-effort.png";
 
 export const MOCK_PROFILE: KidProfile = {
   id: "bar",
-  name: DICTIONARY.mockProfile.name,
+  name: D.mockProfile.name,
   avatar: "🦁",
   bgColor: "bg-blue-100 text-blue-800",
 };
@@ -14,20 +14,20 @@ export const MOCK_PROFILE: KidProfile = {
 export const AGENTS: Record<AgentId, Agent> = {
   stop: {
     id: "stop",
-    name: DICTIONARY.agents.stop.name,
+    name: D.agents.stop.name,
     image: mrStop,
-    presets: DICTIONARY.agents.stop.presets,
+    presets: D.agents.stop.presets,
   },
   check: {
     id: "check",
-    name: DICTIONARY.agents.check.name,
+    name: D.agents.check.name,
     image: mrCheck,
-    presets: DICTIONARY.agents.check.presets,
+    presets: D.agents.check.presets,
   },
   effort: {
     id: "effort",
-    name: DICTIONARY.agents.effort.name,
+    name: D.agents.effort.name,
     image: mrEffort,
-    presets: DICTIONARY.agents.effort.presets,
+    presets: D.agents.effort.presets,
   },
 };

@@ -1,7 +1,5 @@
-import { ArrowLeft } from "lucide-react";
-import { Link } from "react-router-dom";
 import { cn } from "../lib/utils";
-import { DICTIONARY } from "../lib/dictionary";
+import { D } from "../lib/dictionary";
 
 type DashboardHeaderProps = {
   profileName: string;
@@ -14,7 +12,7 @@ export function DashboardHeader({
   profileAvatar,
   profileBgColor,
 }: DashboardHeaderProps) {
-  const displayText = `${DICTIONARY.kidDashboard.box} ${profileName}`;
+  const displayText = `${D.kidDashboard.box} ${profileName}`;
 
   return (
     <header className="p-6 pb-2 flex items-center justify-center">

@@ -3,7 +3,7 @@ import { Inbox, Award } from "lucide-react";
 import { DashboardHeader } from "../../components/DashboardHeader";
 import { AgentStatCard } from "./components/AgentStatCard";
 import { AGENTS, MOCK_PROFILE } from "../../lib/mockData";
-import { DICTIONARY } from "../../lib/dictionary";
+import { D } from "../../lib/dictionary";
 import type { AgentId } from "../../lib/types";
 
 // TODO: Replace with real data source
@@ -37,7 +37,7 @@ export function KidDashboard() {
               {MOCK_UNREAD}
             </h2>
             <p className="text-slate-500 font-semibold">
-              {DICTIONARY.kidDashboard.newNotes}
+              {D.kidDashboard.newNotes}
             </p>
           </div>
         </motion.div>
@@ -45,7 +45,7 @@ export function KidDashboard() {
         <div>
           <h3 className="text-xl font-extrabold text-slate-800 mb-4 flex items-center gap-2">
             <Award className="text-amber-500" />
-            {DICTIONARY.kidDashboard.lifetimeSuccesses}
+            {D.kidDashboard.lifetimeSuccesses}
           </h3>
           <div className="grid grid-cols-1 gap-4">
             {Object.values(AGENTS).map((agent, index) => (

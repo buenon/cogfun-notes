@@ -1,7 +1,7 @@
-import type { Agent } from '../../../lib/types';
-import { BottomSheet } from '../../../components/BottomSheet';
-import { DICTIONARY } from '../../../lib/dictionary';
-import { cn } from '../../../lib/utils';
+import type { Agent } from "../../../lib/types";
+import { BottomSheet } from "../../../components/BottomSheet";
+import { D } from "../../../lib/dictionary";
+import { cn } from "../../../lib/utils";
 
 type PresetDrawerProps = {
   agent: Agent | null;
@@ -9,7 +9,11 @@ type PresetDrawerProps = {
   onClose: () => void;
 };
 
-export function PresetDrawer({ agent, onSelectPreset, onClose }: PresetDrawerProps) {
+export function PresetDrawer({
+  agent,
+  onSelectPreset,
+  onClose,
+}: PresetDrawerProps) {
   return (
     <BottomSheet
       open={agent !== null}
@@ -31,8 +35,8 @@ export function PresetDrawer({ agent, onSelectPreset, onClose }: PresetDrawerPro
             key={index}
             onClick={() => onSelectPreset(preset)}
             className={cn(
-              'p-4 rounded-2xl text-start font-semibold text-lg transition-colors border-2 border-transparent',
-              'bg-slate-50 text-slate-700 hover:bg-slate-100 active:bg-slate-200',
+              "p-4 rounded-2xl text-start font-semibold text-lg transition-colors border-2 border-transparent",
+              "bg-slate-50 text-slate-700 hover:bg-slate-100 active:bg-slate-200",
             )}
           >
             {preset}
@@ -40,7 +44,7 @@ export function PresetDrawer({ agent, onSelectPreset, onClose }: PresetDrawerPro
         ))}
 
         <button className="p-4 rounded-2xl text-start font-semibold text-lg border-2 border-dashed border-slate-300 text-slate-500 mt-2 flex items-center justify-center">
-          {DICTIONARY.parentDashboard.customNote}
+          {D.parentDashboard.customNote}
         </button>
       </div>
     </BottomSheet>

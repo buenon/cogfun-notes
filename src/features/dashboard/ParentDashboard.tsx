@@ -5,7 +5,7 @@ import { AgentGrid } from "./components/AgentGrid";
 import { PresetDrawer } from "./components/PresetDrawer";
 import { useNoteLogger } from "./hooks/useNoteLogger";
 import { MOCK_PROFILE } from "../../lib/mockData";
-import { DICTIONARY } from "../../lib/dictionary";
+import { D } from "../../lib/dictionary";
 import { Link } from "react-router-dom";
 
 export function ParentDashboard() {
@@ -29,11 +29,9 @@ export function ParentDashboard() {
             />
           </Link>
           <h1 className="text-3xl font-extrabold text-slate-800 mb-2">
-            {DICTIONARY.parentDashboard.headerCheeringFor}
+            {D.parentDashboard.headerCheeringFor}
           </h1>
-          <p className="text-slate-500">
-            {DICTIONARY.parentDashboard.tapAgent}
-          </p>
+          <p className="text-slate-500">{D.parentDashboard.tapAgent}</p>
         </div>
 
         <AgentGrid onSelectAgent={selectAgent} />
@@ -47,7 +45,7 @@ export function ParentDashboard() {
 
       <SuccessOverlay
         visible={showSuccess}
-        message={DICTIONARY.parentDashboard.successLogged}
+        message={D.parentDashboard.successLogged}
       />
     </motion.div>
   );
