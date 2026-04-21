@@ -2,6 +2,7 @@ import { motion } from 'framer-motion';
 import { ArrowLeft, Inbox, Award } from 'lucide-react';
 import { AGENTS, MOCK_PROFILE } from '../../lib/mockData';
 import { cn } from '../../lib/utils';
+import { DICTIONARY } from '../../lib/dictionary';
 
 export function KidDashboard() {
   const profile = MOCK_PROFILE;
@@ -26,7 +27,7 @@ export function KidDashboard() {
         </a>
         <div className={cn("px-4 py-1.5 rounded-full text-sm font-bold flex items-center gap-2", profile.bgColor)}>
           <span>{profile.avatar}</span>
-          {profile.name}'s Box
+          {DICTIONARY.kidDashboard.box} {profile.name}
         </div>
       </header>
 
@@ -41,7 +42,7 @@ export function KidDashboard() {
           </div>
           <div>
             <h2 className="text-3xl font-black text-slate-800">{unreadNotes}</h2>
-            <p className="text-slate-500 font-semibold">New Success Notes!</p>
+            <p className="text-slate-500 font-semibold">{DICTIONARY.kidDashboard.newNotes}</p>
           </div>
         </motion.div>
 
@@ -49,7 +50,7 @@ export function KidDashboard() {
         <div>
           <h3 className="text-xl font-extrabold text-slate-800 mb-4 flex items-center gap-2">
             <Award className="text-amber-500" />
-            Lifetime Successes
+            {DICTIONARY.kidDashboard.lifetimeSuccesses}
           </h3>
           <div className="grid grid-cols-1 gap-4">
             {Object.values(AGENTS).map((agent, i) => (

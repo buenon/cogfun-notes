@@ -4,6 +4,7 @@ import { ArrowLeft, CheckCircle2, X } from 'lucide-react';
 import { AGENTS, MOCK_PROFILE } from '../../lib/mockData';
 import type { Agent } from '../../lib/mockData';
 import { cn } from '../../lib/utils';
+import { DICTIONARY } from '../../lib/dictionary';
 
 export function ParentDashboard() {
   const [selectedAgent, setSelectedAgent] = useState<Agent | null>(null);
@@ -44,9 +45,9 @@ export function ParentDashboard() {
       <div className="flex-1 p-6 max-w-md mx-auto w-full flex flex-col">
         <div className="mb-10 text-center">
           <h1 className="text-3xl font-extrabold text-slate-800 mb-2">
-            Who are we cheering for today?
+            {DICTIONARY.parentDashboard.headerCheeringFor}
           </h1>
-          <p className="text-slate-500">Tap an agent to log a success.</p>
+          <p className="text-slate-500">{DICTIONARY.parentDashboard.tapAgent}</p>
         </div>
 
         {/* Big 3 Agent Buttons */}
@@ -67,12 +68,12 @@ export function ParentDashboard() {
                 agent.theme === 'effort' && "bg-emerald-100 text-emerald-900 border-emerald-200 hover:bg-emerald-50",
               )}
             >
-              <div className="text-6xl mr-6 z-10 bg-white/40 p-4 rounded-2xl">
+              <div className="text-6xl me-6 z-10 bg-white/40 p-4 rounded-2xl">
                 {agent.emoji}
               </div>
-              <div className="text-left z-10">
+              <div className="text-start z-10">
                 <h2 className="text-2xl font-black mb-1">{agent.name}</h2>
-                <p className="text-sm font-semibold opacity-70">Log a {agent.name} moment</p>
+                <p className="text-sm font-semibold opacity-70">{DICTIONARY.parentDashboard.logMoment} {agent.name}</p>
               </div>
             </motion.button>
           ))}
@@ -118,7 +119,7 @@ export function ParentDashboard() {
                     key={idx}
                     onClick={() => handleLogNote(preset)}
                     className={cn(
-                      "p-4 rounded-2xl text-left font-semibold text-lg transition-colors border-2 border-transparent",
+                      "p-4 rounded-2xl text-start font-semibold text-lg transition-colors border-2 border-transparent",
                       "bg-slate-50 text-slate-700 hover:bg-slate-100 active:bg-slate-200"
                     )}
                   >
@@ -127,9 +128,9 @@ export function ParentDashboard() {
                 ))}
                 
                 <button
-                  className="p-4 rounded-2xl text-left font-semibold text-lg border-2 border-dashed border-slate-300 text-slate-500 mt-2 flex items-center justify-center"
+                  className="p-4 rounded-2xl text-start font-semibold text-lg border-2 border-dashed border-slate-300 text-slate-500 mt-2 flex items-center justify-center"
                 >
-                  + Write a custom note...
+                  {DICTIONARY.parentDashboard.customNote}
                 </button>
               </div>
             </motion.div>
@@ -152,7 +153,7 @@ export function ParentDashboard() {
               className="bg-emerald-100 text-emerald-800 p-8 rounded-3xl flex flex-col items-center shadow-xl"
             >
               <CheckCircle2 size={64} className="mb-4 text-emerald-600" />
-              <h2 className="text-2xl font-bold">Success Logged!</h2>
+              <h2 className="text-2xl font-bold">{DICTIONARY.parentDashboard.successLogged}</h2>
             </motion.div>
           </motion.div>
         )}

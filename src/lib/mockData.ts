@@ -1,3 +1,5 @@
+import { DICTIONARY } from './dictionary';
+
 export type KidProfile = {
   id: string;
   name: string;
@@ -17,7 +19,7 @@ export type Agent = {
 
 export const MOCK_PROFILE: KidProfile = {
   id: 'leo',
-  name: 'Leo',
+  name: DICTIONARY.mockProfile.name,
   avatar: '🦁',
   bgColor: 'bg-blue-100 text-blue-800'
 };
@@ -25,35 +27,23 @@ export const MOCK_PROFILE: KidProfile = {
 export const AGENTS: Record<AgentId, Agent> = {
   stop: {
     id: 'stop',
-    name: 'Mr. Stop',
+    name: DICTIONARY.agents.stop.name,
     emoji: '🐳',
     theme: 'stop',
-    presets: [
-      'Stopped to think before acting',
-      'Took a deep breath when frustrated',
-      'Waited patiently for a turn'
-    ],
+    presets: DICTIONARY.agents.stop.presets,
   },
   check: {
     id: 'check',
-    name: 'Mr. Check',
+    name: DICTIONARY.agents.check.name,
     emoji: '🦉',
     theme: 'check',
-    presets: [
-      'Checked work carefully',
-      'Noticed a mistake and fixed it',
-      'Followed all instructions'
-    ],
+    presets: DICTIONARY.agents.check.presets,
   },
   effort: {
     id: 'effort',
-    name: 'Mr. Effort',
+    name: DICTIONARY.agents.effort.name,
     emoji: '🦖',
     theme: 'effort',
-    presets: [
-      'Kept trying when it was hard',
-      'Finished a difficult task',
-      'Showed great energy and focus'
-    ],
+    presets: DICTIONARY.agents.effort.presets,
   },
 };
