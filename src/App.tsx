@@ -1,7 +1,6 @@
-import { Routes, Route } from 'react-router-dom';
-import { AnimatePresence } from 'framer-motion';
-import { HomePage } from './features/home';
-import { ParentDashboard, KidDashboard } from './features/dashboard';
+import { Routes, Route } from "react-router-dom";
+import { AnimatePresence } from "framer-motion";
+import { HomePage, ParentDashboard, KidDashboard } from "@pages";
 
 function App() {
   return (

@@ -1,7 +1,5 @@
-import type { Agent } from "../../../lib/types";
-import { BottomSheet } from "../../../components/BottomSheet";
-import { D } from "../../../lib/dictionary";
-import { cn } from "../../../lib/utils";
+import { BottomSheet } from "@components";
+import { D, cn, type Agent } from "@lib";
 
 type PresetDrawerProps = {
   agent: Agent | null;

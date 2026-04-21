@@ -1,5 +1,5 @@
-import { motion } from 'framer-motion';
-import type { Agent } from '../../../lib/types';
+import { motion } from "framer-motion";
+import { type Agent } from "@lib";
 
 type AgentStatCardProps = {
   agent: Agent;

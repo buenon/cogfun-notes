@@ -1,12 +1,13 @@
 import { motion } from "framer-motion";
-import { DashboardHeader } from "../../components/DashboardHeader";
-import { SuccessOverlay } from "../../components/SuccessOverlay";
-import { AgentGrid } from "./components/AgentGrid";
-import { PresetDrawer } from "./components/PresetDrawer";
-import { useNoteLogger } from "./hooks/useNoteLogger";
-import { MOCK_PROFILE } from "../../lib/mockData";
-import { D } from "../../lib/dictionary";
 import { Link } from "react-router-dom";
+import { D, MOCK_PROFILE } from "@lib";
+import { useNoteLogger } from "@hooks";
+import {
+  AgentGrid,
+  DashboardHeader,
+  PresetDrawer,
+  SuccessOverlay,
+} from "@components";
 
 export function ParentDashboard() {
   const { selectedAgent, showSuccess, selectAgent, clearSelection, logNote } =

@@ -1,10 +1,8 @@
 import { motion } from "framer-motion";
 import { Inbox, Award } from "lucide-react";
-import { DashboardHeader } from "../../components/DashboardHeader";
-import { AgentStatCard } from "./components/AgentStatCard";
-import { AGENTS, MOCK_PROFILE } from "../../lib/mockData";
-import { D } from "../../lib/dictionary";
-import { useNotes } from "./hooks/useNotes";
+import { D, AGENTS, MOCK_PROFILE } from "@lib";
+import { useNotes } from "@hooks";
+import { AgentStatCard, DashboardHeader } from "@components";
 
 export function KidDashboard() {
   const { stats, unreadCount, loading } = useNotes(MOCK_PROFILE.id);

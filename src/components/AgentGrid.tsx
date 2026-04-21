@@ -1,6 +1,5 @@
-import type { Agent } from "../../../lib/types";
-import { AGENTS } from "../../../lib/mockData";
-import { AgentCard } from "./AgentCard";
+import { AGENTS, type Agent } from "@lib";
+import { AgentCard } from "@components";
 
 type AgentGridProps = {
   onSelectAgent: (agent: Agent) => void;

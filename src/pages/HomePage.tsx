@@ -1,7 +1,6 @@
 import { User, Users } from "lucide-react";
 import { Link } from "react-router-dom";
-import { cn } from "../../lib/utils";
-import { D } from "../../lib/dictionary";
+import { cn, D } from "@lib";
 
 const MODE_CARDS = [
   {

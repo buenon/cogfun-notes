@@ -1,8 +1,5 @@
 import { motion } from "framer-motion";
-import type { Agent } from "../../../lib/types";
-import { AGENT_THEME } from "../../../lib/theme";
-import { cn } from "../../../lib/utils";
-import { D } from "../../../lib/dictionary";
+import { AGENT_THEME, D, cn, type Agent } from "@lib";
 
 type AgentCardProps = {
   agent: Agent;

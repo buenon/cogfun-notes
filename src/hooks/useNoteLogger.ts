@@ -1,8 +1,6 @@
-import { useState, useCallback } from "react";
+import { useCallback, useState } from "react";
 import { collection, addDoc } from "firebase/firestore";
-import { db } from "../../../lib/firebase";
-import type { Agent } from "../../../lib/types";
-import { MOCK_PROFILE } from "../../../lib/mockData";
+import { db, MOCK_PROFILE, type Agent } from "@lib";
 
 const SUCCESS_DISPLAY_MS = 2000;
 

@@ -1,5 +1,4 @@
-import { cn } from "../lib/utils";
-import { D } from "../lib/dictionary";
+import { cn, D } from "@lib";
 
 type DashboardHeaderProps = {
   profileName: string;

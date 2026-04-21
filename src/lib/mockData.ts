@@ -1,8 +1,7 @@
-import type { Agent, AgentId, KidProfile } from "./types";
-import { D } from "./dictionary";
-import mrStop from "../assets/mr-stop.png";
-import mrCheck from "../assets/mr-check.png";
-import mrEffort from "../assets/mr-effort.png";
+import { D, type Agent, type AgentId, type KidProfile } from "@lib";
+import mrStop from "@assets/mr-stop.png";
+import mrCheck from "@assets/mr-check.png";
+import mrEffort from "@assets/mr-effort.png";
 
 export const MOCK_PROFILE: KidProfile = {
   id: "bar",

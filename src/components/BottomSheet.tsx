@@ -1,6 +1,6 @@
-import type { ReactNode } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { X } from 'lucide-react';
+import { X } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
+import type { ReactNode } from "react";
 
 type BottomSheetProps = {
   open: boolean;
@@ -10,7 +10,7 @@ type BottomSheetProps = {
   children: ReactNode;
 };
 
-const SPRING = { type: 'spring', damping: 25, stiffness: 200 } as const;
+const SPRING = { type: "spring", damping: 25, stiffness: 200 } as const;
 
 export function BottomSheet({
   open,
@@ -31,9 +31,9 @@ export function BottomSheet({
             className="fixed inset-0 bg-slate-900/40 z-40 backdrop-blur-sm"
           />
           <motion.div
-            initial={{ y: '100%' }}
+            initial={{ y: "100%" }}
             animate={{ y: 0 }}
-            exit={{ y: '100%' }}
+            exit={{ y: "100%" }}
             transition={SPRING}
             className="fixed bottom-0 left-0 right-0 bg-white rounded-t-[2.5rem] p-6 pt-8 z-50 shadow-2xl pb-12"
           >
