@@ -4,13 +4,11 @@ import { DashboardHeader } from "../../components/DashboardHeader";
 import { AgentStatCard } from "./components/AgentStatCard";
 import { AGENTS, MOCK_PROFILE } from "../../lib/mockData";
 import { D } from "../../lib/dictionary";
-import type { AgentId } from "../../lib/types";
-
-// TODO: Replace with real data source
-const MOCK_STATS: Record<AgentId, number> = { stop: 12, check: 8, effort: 15 };
-const MOCK_UNREAD = 3;
+import { useNotes } from "./hooks/useNotes";
 
 export function KidDashboard() {
+  const { stats, unreadCount, loading } = useNotes(MOCK_PROFILE.id);
+
   return (
     <motion.div
       initial={{ opacity: 0, x: -20 }}
@@ -34,7 +32,7 @@ export function KidDashboard() {
           </div>
           <div>
             <h2 className="text-3xl font-black text-slate-800">
-              {MOCK_UNREAD}
+              {loading ? "..." : unreadCount}
             </h2>
             <p className="text-slate-500 font-semibold">
               {D.kidDashboard.newNotes}
@@ -52,7 +50,7 @@ export function KidDashboard() {
               <AgentStatCard
                 key={agent.id}
                 agent={agent}
-                count={MOCK_STATS[agent.id]}
+                count={stats[agent.id] || 0}
                 index={index}
               />
             ))}

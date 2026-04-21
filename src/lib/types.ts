@@ -13,3 +13,11 @@ export type KidProfile = {
   avatar: string;
   bgColor: string;
 };
+
+export type SuccessNote = {
+  id: string;
+  agentId: AgentId;
+  text: string;
+  createdAt: number;
+  isRead: boolean;
+};
