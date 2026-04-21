@@ -1,18 +1,24 @@
 import { motion } from "framer-motion";
-import { Inbox, Award } from "lucide-react";
+import { Inbox, Award, ArrowLeft } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 import { D, AGENTS, MOCK_PROFILE } from "@lib";
 import { useNotes } from "@hooks";
-import { AgentStatCard, DashboardHeader } from "@components";
+import { AgentStatCard, DashboardHeader, NotesList } from "@components";
 
 export function KidDashboard() {
-  const { stats, unreadCount, loading } = useNotes(MOCK_PROFILE.id);
+  const navigate = useNavigate();
+  const { notes, stats, unreadCount, loading, markAsRead } = useNotes(
+    MOCK_PROFILE.id,
+  );
+
+  const unreadNotes = notes.filter((n) => !n.isRead);
 
   return (
     <motion.div
       initial={{ opacity: 0, x: -20 }}
       animate={{ opacity: 1, x: 0 }}
       exit={{ opacity: 0, x: 20 }}
-      className="flex flex-col min-h-screen bg-slate-50 relative"
+      className="flex flex-col min-h-screen bg-slate-50 relative pb-20"
     >
       <DashboardHeader
         profileName={MOCK_PROFILE.name}
@@ -21,23 +27,28 @@ export function KidDashboard() {
       />
 
       <div className="flex-1 p-6 max-w-md mx-auto w-full flex flex-col gap-8">
+        {/* Unread Count Hero */}
         <motion.div
-          className="bg-white p-6 rounded-[2rem] shadow-sm border border-slate-100 flex items-center gap-6"
+          className="bg-white p-6 rounded-[2.5rem] shadow-sm border border-slate-100 flex items-center gap-6"
           whileHover={{ scale: 1.02 }}
         >
-          <div className="bg-blue-100 text-blue-600 p-4 rounded-2xl">
-            <Inbox size={32} />
+          <div className="bg-indigo-100 text-indigo-600 p-4 rounded-3xl">
+            <Inbox size={40} />
           </div>
           <div>
-            <h2 className="text-3xl font-black text-slate-800">
+            <h2 className="text-4xl font-black text-slate-800">
               {loading ? "..." : unreadCount}
             </h2>
-            <p className="text-slate-500 font-semibold">
+            <p className="text-slate-500 font-bold text-lg">
               {D.kidDashboard.newNotes}
             </p>
           </div>
         </motion.div>
 
+        {/* New Notes List */}
+        <NotesList notes={unreadNotes} onMarkAsRead={markAsRead} />
+
+        {/* Lifetime Stats */}
         <div>
           <h3 className="text-xl font-extrabold text-slate-800 mb-4 flex items-center gap-2">
             <Award className="text-amber-500" />
@@ -54,6 +65,15 @@ export function KidDashboard() {
             ))}
           </div>
         </div>
+
+        {/* View All Button */}
+        <button
+          onClick={() => navigate("/kid/notes")}
+          className="mt-4 flex items-center justify-center gap-2 p-5 bg-slate-200 text-slate-600 rounded-3xl font-black text-lg hover:bg-slate-300 transition-colors"
+        >
+          <span>לכל הפתקים שלי</span>
+          <ArrowLeft size={20} />
+        </button>
       </div>
     </motion.div>
   );

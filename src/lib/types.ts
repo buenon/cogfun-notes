@@ -16,6 +16,7 @@ export type KidProfile = {
 
 export type SuccessNote = {
   id: string;
+  kidId: string;
   agentId: AgentId;
   text: string;
   createdAt: number;
