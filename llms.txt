@@ -1,0 +1,13 @@
+# CogFun Success Box (v0.1)
+Digitalizing the "Success Box" for ADHD Cognitive-Functional therapy.
+
+## Current State
+- Vite + React + TS scaffolded.
+- UI-First development phase.
+- No backend integrated yet.
+
+## Desired Architecture
+- src/components/ui: Generic, reusable components.
+- src/features/parent: Entry buttons and preset logic.
+- src/features/kid: Dashboard and "Mr." summary cards.
+- src/types: Domain types for CogFun agents and notes.
