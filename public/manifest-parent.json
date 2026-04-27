@@ -1,7 +1,9 @@
 {
   "name": "קוגפאן הורים",
   "short_name": "קוגפאן הורים",
+  "id": "/cogfun-notes/parent/",
   "start_url": "/cogfun-notes/parent",
+  "scope": "/cogfun-notes/parent/",
   "display": "standalone",
   "background_color": "#ffffff",
   "theme_color": "#6366f1",
