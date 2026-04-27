@@ -1,7 +1,7 @@
 {
-  "name": "CogFun Parent",
-  "short_name": "CogFun Parent",
-  "start_url": "/cogfun-notes/",
+  "name": "קוגפאן הורים",
+  "short_name": "קוגפאן הורים",
+  "start_url": "/cogfun-notes/parent",
   "display": "standalone",
   "background_color": "#ffffff",
   "theme_color": "#6366f1",

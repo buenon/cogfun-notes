@@ -1,6 +1,6 @@
 {
-  "name": "CogFun Kid",
-  "short_name": "CogFun Kid",
+  "name": "קוגפאן פתקים",
+  "short_name": "קוגפאן",
   "start_url": "/cogfun-notes/kid",
   "display": "standalone",
   "background_color": "#ffffff",
