@@ -1,7 +1,7 @@
 {
   "name": "קוגפאן פתקים",
   "short_name": "קוגפאן",
-  "id": "/cogfun-notes/kid/",
+  "id": "cogfun-app-kid-v2",
   "start_url": "/cogfun-notes/kid",
   "scope": "/cogfun-notes/kid/",
   "display": "standalone",

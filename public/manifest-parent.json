@@ -1,7 +1,7 @@
 {
   "name": "קוגפאן הורים",
   "short_name": "קוגפאן הורים",
-  "id": "/cogfun-notes/parent/",
+  "id": "cogfun-app-parent-v2",
   "start_url": "/cogfun-notes/parent",
   "scope": "/cogfun-notes/parent/",
   "display": "standalone",
