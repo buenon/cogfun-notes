@@ -1,13 +1,13 @@
 import { motion } from "framer-motion";
 import { ArrowRight, History } from "lucide-react";
 import { useNavigate } from "react-router-dom";
-import { MOCK_PROFILE, D } from "@lib";
+import { MOCK_PROFILE, D, getGemImage } from "@lib";
 import { useNotes } from "@hooks";
 import { NotesList, DashboardHeader } from "@components";
 
 export function AllNotesPage() {
   const navigate = useNavigate();
-  const { notes, markAsRead, loading } = useNotes(MOCK_PROFILE.id);
+  const { notes, markAsRead, loading, unreadCount } = useNotes(MOCK_PROFILE.id);
 
   return (
     <motion.div
@@ -41,6 +41,28 @@ export function AllNotesPage() {
             היסטוריית הצלחות
           </h1>
         </div>
+
+        {!loading && unreadCount > 0 && (
+          <motion.div
+            initial={{ opacity: 0, y: -10 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="bg-indigo-50 border border-indigo-100 p-4 rounded-3xl flex items-center gap-4"
+          >
+            <img
+              src={getGemImage(unreadCount) || ""}
+              alt="gems"
+              className="w-20 h-20 object-contain"
+            />
+            <div>
+              <p className="font-black text-indigo-900 text-xl leading-tight">
+                {unreadCount}
+              </p>
+              <p className="text-indigo-600 font-bold text-sm">
+                פתקים שעדיין לא נקראו
+              </p>
+            </div>
+          </motion.div>
+        )}
 
         {loading ? (
           <div className="flex justify-center p-12 text-slate-400 font-bold">

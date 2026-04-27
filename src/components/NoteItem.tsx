@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { CheckCircle2, Clock } from "lucide-react";
+import { CheckCircle2, Clock, Sparkles } from "lucide-react";
 import { type SuccessNote, AGENTS, AGENT_THEME, cn } from "@lib";
 
 type NoteItemProps = {
@@ -23,16 +23,16 @@ export function NoteItem({
       animate={{ opacity: 1, y: 0 }}
       exit={{ opacity: 0, scale: 0.95 }}
       className={cn(
-        "flex items-center gap-4 p-4 rounded-3xl border transition-all",
+        "flex items-center gap-4 p-4 rounded-3xl border-2 transition-all",
         note.isRead
-          ? "bg-white border-slate-100 opacity-70"
-          : cn(theme.bg, "border-transparent shadow-sm"),
+          ? cn("bg-white shadow-none", theme.border)
+          : cn(theme.bg, theme.border, "shadow-md ring-1 ring-white/50"),
       )}
     >
       <div
         className={cn(
-          "w-12 h-12 rounded-2xl flex items-center justify-center shrink-0",
-          note.isRead ? "bg-slate-50" : "bg-white/50",
+          "w-12 h-12 rounded-2xl flex items-center justify-center shrink-0 relative",
+          note.isRead ? "bg-slate-50" : "bg-white shadow-sm",
         )}
       >
         <img
@@ -44,13 +44,20 @@ export function NoteItem({
           decoding="sync"
           className="w-8 h-8 object-contain aspect-square"
         />
+        {!note.isRead && (
+          <div className="absolute -top-1 -right-1 bg-amber-400 text-white p-0.5 rounded-full shadow-sm">
+            <Sparkles size={10} fill="currentColor" />
+          </div>
+        )}
       </div>
 
       <div className="flex-1 min-w-0">
         <p
           className={cn(
-            "font-bold text-sm leading-tight",
-            note.isRead ? "text-slate-500" : theme.text,
+            "leading-tight",
+            note.isRead
+              ? "font-bold text-slate-400 text-sm"
+              : "font-black text-slate-900 text-base",
           )}
         >
           {note.text}

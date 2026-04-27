@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import { Inbox, Award, ArrowLeft } from "lucide-react";
 import { useNavigate } from "react-router-dom";
-import { D, AGENTS, MOCK_PROFILE } from "@lib";
+import { D, AGENTS, MOCK_PROFILE, getGemImage } from "@lib";
 import { useNotes } from "@hooks";
 import { AgentStatCard, DashboardHeader, NotesList } from "@components";
 
@@ -32,11 +32,21 @@ export function KidDashboard() {
           className="bg-white p-6 rounded-[2.5rem] shadow-sm border border-slate-100 flex items-center gap-6"
           whileHover={{ scale: 1.02 }}
         >
-          <div className="bg-indigo-100 text-indigo-600 p-4 rounded-3xl">
-            <Inbox size={40} />
+          <div className="bg-indigo-100 text-indigo-600 p-2 rounded-3xl min-w-[80px] h-[80px] flex items-center justify-center overflow-hidden">
+            {unreadCount > 0 ? (
+              <motion.img
+                initial={{ scale: 0, rotate: -20 }}
+                animate={{ scale: 1, rotate: 0 }}
+                src={getGemImage(unreadCount) || ""}
+                alt="gems"
+                className="w-full h-full object-contain"
+              />
+            ) : (
+              <Inbox size={40} />
+            )}
           </div>
           <div>
-            <h2 className="text-4xl font-black font-display text-slate-800">
+            <h2 className="text-4xl font-black font-display text-slate-800 leading-none">
               {loading ? "..." : unreadCount}
             </h2>
             <p className="text-slate-500 font-bold text-lg">
