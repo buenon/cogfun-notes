@@ -1,7 +1,7 @@
 {
-  "name": "CogFun",
-  "short_name": "CogFun",
-  "start_url": ".",
+  "name": "CogFun Parent",
+  "short_name": "CogFun Parent",
+  "start_url": "/cogfun-notes/",
   "display": "standalone",
   "background_color": "#ffffff",
   "theme_color": "#6366f1",
