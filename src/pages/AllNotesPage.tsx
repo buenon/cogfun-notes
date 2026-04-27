@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import { ArrowRight, History } from "lucide-react";
 import { useNavigate } from "react-router-dom";
-import { MOCK_PROFILE, D, getGemImage } from "@lib";
+import { MOCK_PROFILE, getGemImage } from "@lib";
 import { useNotes } from "@hooks";
 import { NotesList, DashboardHeader } from "@components";
 
