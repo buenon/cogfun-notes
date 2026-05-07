@@ -29,7 +29,7 @@ export function ParentDashboard() {
     >
       <div className="flex-1 p-6 max-w-md mx-auto w-full flex flex-col">
         <div className="mb-10 text-center">
-          <Link to="/kid">
+          <Link to="/kid" state={{ fromParent: true }}>
             <DashboardHeader
               profileName={MOCK_PROFILE.name}
               profileAvatar={MOCK_PROFILE.avatar}

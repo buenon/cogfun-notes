@@ -1,13 +1,14 @@
 import { motion } from "framer-motion";
-import { Inbox, Award, ArrowLeft } from "lucide-react";
+import { Inbox, Award, ArrowLeft, ArrowRight } from "lucide-react";
 import gemIcon from "../assets/icon_gem.png";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import { D, AGENTS, MOCK_PROFILE, getGemImage } from "@lib";
 import { useNotes } from "@hooks";
 import { AgentStatCard, DashboardHeader, NotesList } from "@components";
 
 export function KidDashboard() {
   const navigate = useNavigate();
+  const location = useLocation();
   const { notes, stats, unreadCount, loading, markAsRead } = useNotes(
     MOCK_PROFILE.id,
   );
@@ -26,6 +27,16 @@ export function KidDashboard() {
         profileAvatar={MOCK_PROFILE.avatar}
         profileBgColor={MOCK_PROFILE.bgColor}
       />
+
+      {/* Back Button (Only if from parent) */}
+      {location.state?.fromParent && (
+        <button
+          onClick={() => navigate("/parent")}
+          className="absolute top-6 right-6 z-10 p-2 bg-white rounded-full shadow-sm text-slate-600 hover:bg-slate-50 transition-colors border border-slate-200"
+        >
+          <ArrowRight size={24} />
+        </button>
+      )}
 
       {/* Gem Road Button */}
       <button
