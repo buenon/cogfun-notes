@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { MOCK_PROFILE, getGemImage } from "@lib";
 import { useNotes } from "@hooks";
 import { NotesList, NavigationHeader, ProfileBadge } from "@components";
+import gemIcon from "../assets/icon_gem.png";
 
 export function AllNotesPage() {
   const navigate = useNavigate();
@@ -31,6 +32,19 @@ export function AllNotesPage() {
             profileAvatar={MOCK_PROFILE.avatar}
             profileBgColor={MOCK_PROFILE.bgColor}
           />
+        }
+        rightAction={
+          <button
+            onClick={() => navigate("/kid/road")}
+            className="flex items-center gap-1.5 bg-amber-100 hover:bg-amber-200 text-amber-700 px-3 py-1.5 rounded-full font-bold shadow-sm transition-colors border border-amber-200"
+          >
+            <img
+              src={gemIcon}
+              alt="gem"
+              className="w-[18px] h-[18px] object-contain drop-shadow-sm"
+            />
+            <span>{notes.length}</span>
+          </button>
         }
       />
 
