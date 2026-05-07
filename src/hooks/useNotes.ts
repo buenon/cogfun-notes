@@ -65,11 +65,11 @@ export function useNotes(kidId: string = MOCK_PROFILE.id) {
           const timeA =
             typeof a.createdAt === "number"
               ? a.createdAt
-              : (a.createdAt as any)?.toMillis?.() || 0;
+              : (a.createdAt as { toMillis?: () => number }).toMillis?.() || 0;
           const timeB =
             typeof b.createdAt === "number"
               ? b.createdAt
-              : (b.createdAt as any)?.toMillis?.() || 0;
+              : (b.createdAt as { toMillis?: () => number }).toMillis?.() || 0;
           return timeB - timeA;
         });
 

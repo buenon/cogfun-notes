@@ -1,39 +1,35 @@
 # Project Memory: CogFun App
 
-## Current Status
+## Current Status (May 2026)
 
-- [x] Vite + TS Scaffolded.
-- [x] Firebase Firestore Integrated (Real-time data persistence).
-- [x] Path Aliases Configured (`@lib`, `@components`, `@hooks`, `@pages`).
-- [x] Core UI Components Built (`BottomSheet`, `AgentGrid`, `SuccessOverlay`).
-- [x] Parent Dashboard (Zero-Friction logging).
-- [x] Kid Dashboard (Success viewing & Stats).
-- [x] RTL Support (Hebrew localization).
+- [x] **Core Architecture**: Vite + TypeScript + Path Aliases.
+- [x] **Data Layer**: Firebase Firestore with real-time `onSnapshot` updates.
+- [x] **UI Standardization**: Unified `NavigationHeader` and `ProfileBadge` components.
+- [x] **Parent Flow**: Agent grid, preset drawer, and custom note entry.
+- [x] **Kid Flow**: Unread counts, agent stats, and "Mark as Read" functionality.
+- [x] **Gamification**: Interactive Gem Road with milestones and progress tracking.
+- [x] **History**: Dedicated "All Notes" view with read/unread filtering.
+- [x] **Localization**: Full Hebrew RTL support for all layouts and navigation.
+- [x] **Code Quality**: Passing `eslint` with zero errors; no `any` types in core logic.
 
-## Functional Requirements
+## Key Technical Decisions
 
-- **Profiles:** Mock profile for "Bar" is active. Multi-profile support is in the roadmap.
-- **Presets:** CogFun preset lists for Mr. Stop, Mr. Check, and Mr. Effort are fully implemented.
-- **The "Box":** Kid dashboard displays "new" notes and lifetime counts.
-- **Real-time:** Updates reflect instantly across devices via Firestore `onSnapshot`.
+- **NavigationHeader**: A flexible component handling leading (Back/Home), center (Identity), and trailing (Utility) slots, optimized for RTL.
+- **ProfileBadge**: Interactive identity component that standardizes how the kid's name/avatar is displayed.
+- **Gems System**: Dynamic gem pack images based on the number of unread/total notes.
+- **Dev Tools**: Global `generateNotes` and `clearNotes` exposed in the console for testing.
 
-## Next Steps
+## Recent UI Refinements
 
-- [x] Kid Dashboard: Unread count, agent stats, and unread notes list.
-- [x] Kid Dashboard: "Mark as Read" functionality.
-- [x] Kid Dashboard: Full history view (All Notes page).
-
-## Functional Requirements
-
-- **Profiles:** Mock profile for "Bar" is active. Multi-profile support is in the roadmap.
-- **Presets:** CogFun preset lists for Mr. Stop, Mr. Check, and Mr. Effort are fully implemented.
-- **The "Box":** Kid dashboard displays "new" notes and lifetime counts. "Mark as Read" removes notes from the primary list.
-- **History:** Full list of all historical successes available in a dedicated view.
-- **Real-time:** Updates reflect instantly across devices via Firestore `onSnapshot`.
+- **Standardized Back Buttons**: Unified sizing (`p-2.5`) and icons (`ArrowRight` for Hebrew).
+- **Icon Polish**: Replaced generic "Drawer" icons with playful Gem assets.
+- **Animation Tweak**: Removed excessive animations from the profile badge to keep the UI snappy.
+- **Dead Code Cleanup**: Removed unused assets and generic boilerplate.
 
 ## Next Steps
 
-- [ ] Add "Custom Note" entry in Parent Dashboard.
-- [ ] Implement Multi-Kid profile selection.
-- [ ] Performance optimization: Memoize components and optimize Firestore queries.
-- [ ] Polish animations: Enhancing the "sliding into the box" experience with Framer Motion.
+- [ ] **Multi-Profile Support**: Allow switching between different children.
+- [ ] **Parent Controls**: Ability to delete or edit logged notes.
+- [ ] **Push Notifications**: Notify kid devices when a new success is logged.
+- [ ] **PWA Refinement**: Ensure offline support and home-screen install experience is seamless.
+- [ ] **Performance**: Memoize heavy list components for large success histories.

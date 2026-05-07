@@ -1,18 +1,11 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { User } from "lucide-react";
 import { D } from "@lib";
 
 export function ParentNameModal() {
-  const [isOpen, setIsOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState(() => !localStorage.getItem("parentName"));
   const [name, setName] = useState("");
-
-  useEffect(() => {
-    const storedName = localStorage.getItem("parentName");
-    if (!storedName) {
-      setIsOpen(true);
-    }
-  }, []);
 
   const handleSave = () => {
     if (name.trim()) {

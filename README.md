@@ -1,73 +1,46 @@
-# React + TypeScript + Vite
+# CogFun - Digital Success Box
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A playful productivity app for kids and parents to track daily "successes" based on the CogFun methodology.
 
-Currently, two official plugins are available:
+## 🚀 Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+- **Parent Dashboard**: Quick logging of successes using agent-specific presets or custom notes.
+- **Kid Dashboard**: Visual dashboard with gem rewards, agent stats, and unread note stacks.
+- **Gem Road**: Interactive achievement road tracking lifetime successes.
+- **Real-time Updates**: Powered by Firebase Firestore for instant synchronization across devices.
+- **RTL Support**: Full Hebrew localization and layout.
 
-## React Compiler
+## 🛠️ Tech Stack
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- **Frontend**: React + Vite + TypeScript
+- **Styling**: Tailwind CSS + Framer Motion
+- **Icons**: Lucide-React
+- **Database**: Firebase Firestore
 
-## Expanding the ESLint configuration
+## 📦 Getting Started
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+1. **Clone the repo**
+2. **Install dependencies**:
+   ```bash
+   yarn install
+   ```
+3. **Configure Environment**:
+   Create a `.env` file in the root with your Firebase configuration.
+4. **Run development server**:
+   ```bash
+   yarn dev
+   ```
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+## 🛠️ Dev Tools
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+When running in development mode, you can use the following commands in the browser console:
+- `generateNotes(count)`: Generate mock success notes.
+- `clearNotes()`: Clear all notes from the current collection.
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+## 📁 Project Structure
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
-
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+- `src/components`: Reusable UI components.
+- `src/pages`: Main application screens.
+- `src/hooks`: Custom React hooks (e.g., `useNotes`).
+- `src/lib`: Utilities, constants, and Firebase configuration.
+- `src/assets`: Images and icons.

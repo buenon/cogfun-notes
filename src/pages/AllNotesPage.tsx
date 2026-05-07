@@ -3,7 +3,7 @@ import { ArrowRight, History } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { MOCK_PROFILE, getGemImage } from "@lib";
 import { useNotes } from "@hooks";
-import { NotesList, DashboardHeader } from "@components";
+import { NotesList, NavigationHeader, ProfileBadge } from "@components";
 
 export function AllNotesPage() {
   const navigate = useNavigate();
@@ -16,22 +16,25 @@ export function AllNotesPage() {
       exit={{ opacity: 0, x: -20 }}
       className="flex flex-col min-h-screen bg-slate-50 relative"
     >
-      <DashboardHeader
-        profileName={MOCK_PROFILE.name}
-        profileAvatar={MOCK_PROFILE.avatar}
-        profileBgColor={MOCK_PROFILE.bgColor}
+      <NavigationHeader
+        leftAction={
+          <button
+            onClick={() => navigate("/kid")}
+            className="p-2.5 bg-white rounded-full shadow-sm text-slate-600 hover:bg-slate-50 transition-colors border border-slate-200"
+          >
+            <ArrowRight size={22} />
+          </button>
+        }
+        center={
+          <ProfileBadge
+            profileName={MOCK_PROFILE.name}
+            profileAvatar={MOCK_PROFILE.avatar}
+            profileBgColor={MOCK_PROFILE.bgColor}
+          />
+        }
       />
 
       <div className="flex-1 p-6 max-w-md mx-auto w-full flex flex-col gap-6">
-        <div className="flex items-center justify-between">
-          <button
-            onClick={() => navigate("/kid")}
-            className="flex items-center gap-2 text-slate-500 font-bold hover:text-slate-800 transition-colors"
-          >
-            <ArrowRight size={20} />
-            <span>חזרה</span>
-          </button>
-        </div>
 
         <div className="flex items-center gap-3 mb-2">
           <div className="bg-amber-100 text-amber-600 p-2 rounded-xl">

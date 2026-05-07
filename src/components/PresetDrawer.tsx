@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { Send, Loader2 } from "lucide-react";
 import { BottomSheet } from "@components";
 import { D, cn, type Agent } from "@lib";
@@ -18,10 +18,10 @@ export function PresetDrawer({
 }: PresetDrawerProps) {
   const [customText, setCustomText] = useState("");
 
-  // Reset text when drawer closes or agent changes
-  useEffect(() => {
-    if (!agent) setCustomText("");
-  }, [agent]);
+  const handleClose = () => {
+    setCustomText("");
+    onClose();
+  };
 
   const handleSubmitCustom = () => {
     if (customText.trim() && !isLoading) {
@@ -33,7 +33,7 @@ export function PresetDrawer({
   return (
     <BottomSheet
       open={agent !== null}
-      onClose={onClose}
+      onClose={handleClose}
       title={agent?.name}
       icon={
         agent && (

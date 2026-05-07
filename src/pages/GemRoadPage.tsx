@@ -1,10 +1,11 @@
 import { motion } from "framer-motion";
-import { ArrowLeft, Gift, CheckCircle2 } from "lucide-react";
+import { ArrowRight, Gift, CheckCircle2 } from "lucide-react";
 import gemIcon from "../assets/icon_gem.png";
 import { useNavigate } from "react-router-dom";
 import { D, MOCK_PROFILE, cn } from "@lib";
 import { useNotes } from "@hooks";
 import { useEffect, useRef } from "react";
+import { NavigationHeader } from "@components";
 
 const MAX_NOTES = 200;
 const STEP_SIZE = 20;
@@ -43,25 +44,33 @@ export function GemRoadPage() {
       className="flex flex-col h-screen bg-amber-50 relative overflow-hidden"
     >
       {/* Header */}
-      <header className="p-6 bg-white/80 backdrop-blur-md border-b border-amber-100 flex items-center justify-between sticky top-0 z-50">
-        <button
-          onClick={() => navigate(-1)}
-          className="p-3 bg-white rounded-full shadow-sm text-slate-600 hover:bg-slate-50 transition-colors"
-        >
-          <ArrowLeft size={24} />
-        </button>
-        <h1 className="text-2xl font-black font-display text-amber-600">
-          {D.gemRoad.title}
-        </h1>
-        <div className="flex items-center gap-2 bg-amber-100 text-amber-700 px-4 py-2 rounded-full font-bold">
-          <img
-            src={gemIcon}
-            alt="gem"
-            className="w-5 h-5 object-contain drop-shadow-sm"
-          />
-          <span>{totalNotes}</span>
-        </div>
-      </header>
+      <NavigationHeader
+        isSticky
+        className="bg-white/80 border-amber-100"
+        leftAction={
+          <button
+            onClick={() => navigate(-1)}
+            className="p-2.5 bg-white rounded-full shadow-sm text-slate-600 hover:bg-slate-50 transition-colors border border-slate-200"
+          >
+            <ArrowRight size={22} />
+          </button>
+        }
+        center={
+          <h1 className="text-2xl font-black font-display text-amber-600">
+            {D.gemRoad.title}
+          </h1>
+        }
+        rightAction={
+          <div className="flex items-center gap-2 bg-amber-100 text-amber-700 px-4 py-2 rounded-full font-bold">
+            <img
+              src={gemIcon}
+              alt="gem"
+              className="w-5 h-5 object-contain drop-shadow-sm"
+            />
+            <span>{totalNotes}</span>
+          </div>
+        }
+      />
 
       {/* Road Container */}
       <div

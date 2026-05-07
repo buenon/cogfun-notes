@@ -1,7 +1,7 @@
 import { motion, AnimatePresence } from "framer-motion";
 import { type SuccessNote } from "@lib";
 import { NoteItem } from "./NoteItem";
-import { Inbox } from "lucide-react";
+import gemIcon from "../assets/icon_gem.png";
 
 type NotesListProps = {
   notes: SuccessNote[];
@@ -23,7 +23,7 @@ export function NotesList({
         animate={{ opacity: 1 }}
         className="flex flex-col items-center justify-center p-12 text-slate-300 gap-4"
       >
-        <Inbox size={48} strokeWidth={1} />
+        <img src={gemIcon} alt="gem" className="w-16 h-16 opacity-30 grayscale" />
         <p className="font-bold text-center">{emptyMessage}</p>
       </motion.div>
     );

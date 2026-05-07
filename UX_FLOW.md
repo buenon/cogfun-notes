@@ -1,18 +1,35 @@
-# App Flow & State
+# CogFun - App Flow & State
 
-## 1. Landing Screen (Profile Picker)
+## 1. Home Page (Mode Selection)
+- Entry point for the application.
+- Two primary routes: **Parent Mode** and **Kid Mode**.
+- Clean, focused layout to start the experience.
 
-- Two large cards showing the boys' names/avatars.
-- Simple toggle: "I am a Parent" vs "I am [Kid Name]."
+## 2. Parent Dashboard (Logging)
+- **Goal**: Zero-friction logging of successes.
+- **Header**: Features the child's profile badge (Bar). Clicking it navigates to the Kid Dashboard.
+- **Agent Grid**: Tap on Mr. Stop (Blue), Mr. Check (Orange), or Mr. Effort (Green) to log a success.
+- **Preset Drawer**: Slide-up sheet with agent-specific phrases and a "Custom Note" input field.
+- **Success Overlay**: Instant visual feedback when a note is logged.
 
-## 2. Parent Dashboard
+## 3. Kid Dashboard (Rewards)
+- **Goal**: Visualizing achievements and motivation.
+- **Header**: Standardized navigation bar with:
+    - **Back Button**: Returns to Parent Dashboard (if navigated from there).
+    - **Profile Badge**: Consistent child identity.
+    - **Gem Road Button**: Shows current gem count and leads to the achievement road.
+- **Unread Hero**: Large card showing the number of "New Notes" with a gem pack visual.
+- **Notes Feed**: List of unread successes that can be tapped to acknowledge (mark as read).
+- **Lifetime Stats**: Per-agent success counters with award icons.
+- **History Link**: "View All" button at the bottom for full note history.
 
-- Header: "Who are we cheering for today?"
-- The "Big 3" Buttons: Each button features the Agent name and a representative icon.
-- Note Entry: A slide-up drawer containing the presets for the selected agent.
+## 4. Gem Road (Achievements)
+- **Goal**: Long-term progress tracking.
+- **Vertical Road**: A scrolling path with milestone gift boxes (every 20 gems).
+- **Progress Pointer**: Shows exactly where the child is on the road.
+- **RTL Support**: Standard Hebrew navigation (Back button on the right).
 
-## 3. Kid Dashboard
-
-- "My Success Box": A count of unread notes.
-- "The Agents": Three cards showing the total lifetime "Successes" for Mr. Stop, Check, and Effort.
-- Note Feed: A vertical list of cards that can be "swiped" or clicked to acknowledge.
+## 5. All Notes History
+- Full vertical list of all historical success notes.
+- Includes status indicators for read/unread items.
+- Unified header for consistent navigation back to the dashboard.

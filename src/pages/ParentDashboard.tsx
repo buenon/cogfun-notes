@@ -4,7 +4,8 @@ import { D, MOCK_PROFILE } from "@lib";
 import { useNotes } from "@hooks";
 import {
   AgentGrid,
-  DashboardHeader,
+  NavigationHeader,
+  ProfileBadge,
   PresetDrawer,
   SuccessOverlay,
   ParentNameModal,
@@ -27,15 +28,20 @@ export function ParentDashboard() {
       exit={{ opacity: 0, x: -20 }}
       className="flex flex-col min-h-screen bg-slate-50 relative"
     >
-      <div className="flex-1 p-6 max-w-md mx-auto w-full flex flex-col">
-        <div className="mb-10 text-center">
+      <NavigationHeader
+        center={
           <Link to="/kid" state={{ fromParent: true }}>
-            <DashboardHeader
+            <ProfileBadge
               profileName={MOCK_PROFILE.name}
               profileAvatar={MOCK_PROFILE.avatar}
               profileBgColor={MOCK_PROFILE.bgColor}
             />
           </Link>
+        }
+      />
+
+      <div className="flex-1 p-6 max-w-md mx-auto w-full flex flex-col">
+        <div className="mb-10 text-center">
           <h1 className="text-3xl font-extrabold text-slate-800 mb-2">
             {D.parentDashboard.headerCheeringFor}
           </h1>

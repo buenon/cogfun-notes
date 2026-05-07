@@ -1,10 +1,10 @@
 import { motion } from "framer-motion";
-import { Inbox, Award, ArrowLeft, ArrowRight } from "lucide-react";
+import { Award, ArrowLeft, ArrowRight } from "lucide-react";
 import gemIcon from "../assets/icon_gem.png";
 import { useNavigate, useLocation } from "react-router-dom";
 import { D, AGENTS, MOCK_PROFILE, getGemImage } from "@lib";
 import { useNotes } from "@hooks";
-import { AgentStatCard, DashboardHeader, NotesList } from "@components";
+import { AgentStatCard, NavigationHeader, ProfileBadge, NotesList } from "@components";
 
 export function KidDashboard() {
   const navigate = useNavigate();
@@ -22,30 +22,34 @@ export function KidDashboard() {
       exit={{ opacity: 0, x: 20 }}
       className="flex flex-col min-h-screen bg-slate-50 relative pb-20"
     >
-      <DashboardHeader
-        profileName={MOCK_PROFILE.name}
-        profileAvatar={MOCK_PROFILE.avatar}
-        profileBgColor={MOCK_PROFILE.bgColor}
+      <NavigationHeader
+        leftAction={
+          location.state?.fromParent ? (
+            <button
+              onClick={() => navigate("/parent")}
+              className="p-2.5 bg-white rounded-full shadow-sm text-slate-600 hover:bg-slate-50 transition-colors border border-slate-200"
+            >
+              <ArrowRight size={22} />
+            </button>
+          ) : undefined
+        }
+        center={
+          <ProfileBadge
+            profileName={MOCK_PROFILE.name}
+            profileAvatar={MOCK_PROFILE.avatar}
+            profileBgColor={MOCK_PROFILE.bgColor}
+          />
+        }
+        rightAction={
+          <button
+            onClick={() => navigate("/kid/road")}
+            className="flex items-center gap-1.5 bg-amber-100 hover:bg-amber-200 text-amber-700 px-3 py-1.5 rounded-full font-bold shadow-sm transition-colors border border-amber-200"
+          >
+            <img src={gemIcon} alt="gem" className="w-[18px] h-[18px] object-contain drop-shadow-sm" />
+            <span>{notes.length}</span>
+          </button>
+        }
       />
-
-      {/* Back Button (Only if from parent) */}
-      {location.state?.fromParent && (
-        <button
-          onClick={() => navigate("/parent")}
-          className="absolute top-6 right-6 z-10 p-2 bg-white rounded-full shadow-sm text-slate-600 hover:bg-slate-50 transition-colors border border-slate-200"
-        >
-          <ArrowRight size={24} />
-        </button>
-      )}
-
-      {/* Gem Road Button */}
-      <button
-        onClick={() => navigate("/kid/road")}
-        className="absolute top-6 left-6 z-10 flex items-center gap-1.5 bg-amber-100 hover:bg-amber-200 text-amber-700 px-3 py-1.5 rounded-full font-bold shadow-sm transition-colors border border-amber-200"
-      >
-        <img src={gemIcon} alt="gem" className="w-[18px] h-[18px] object-contain drop-shadow-sm" />
-        <span>{notes.length}</span>
-      </button>
 
       <div className="flex-1 p-6 max-w-md mx-auto w-full flex flex-col gap-8">
         {/* Unread Count Hero */}
@@ -63,7 +67,7 @@ export function KidDashboard() {
                 className="w-full h-full object-contain"
               />
             ) : (
-              <Inbox size={40} />
+              <img src={gemIcon} alt="gem" className="w-10 h-10 opacity-20 grayscale" />
             )}
           </div>
           <div>
