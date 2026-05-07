@@ -19,6 +19,11 @@ export const D = {
     newNotes: "פתקי הצלחה חדשים!",
     lifetimeSuccesses: "הצלחות לאורך זמן",
   },
+  gemRoad: {
+    title: "שביל ההצלחות",
+    milestoneReached: "הגעת ליעד!",
+    keepGoing: "המשך כך!",
+  },
   parentNameModal: {
     title: "מי רושם את ההצלחה?",
     description: "נא להזין את השם שלך כדי שהילד ידע ממי ההצלחה (למשל: אבא, אמא, סבא).",

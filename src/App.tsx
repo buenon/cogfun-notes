@@ -1,6 +1,6 @@
 import { Routes, Route } from "react-router-dom";
 import { AnimatePresence } from "framer-motion";
-import { HomePage, ParentDashboard, KidDashboard, AllNotesPage } from "@pages";
+import { HomePage, ParentDashboard, KidDashboard, AllNotesPage, GemRoadPage } from "@pages";
 
 function App() {
   return (
@@ -11,6 +11,7 @@ function App() {
           <Route path="/parent" element={<ParentDashboard />} />
           <Route path="/kid" element={<KidDashboard />} />
           <Route path="/kid/notes" element={<AllNotesPage />} />
+          <Route path="/kid/road" element={<GemRoadPage />} />
         </Routes>
       </AnimatePresence>
     </div>

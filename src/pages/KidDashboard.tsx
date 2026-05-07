@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import { Inbox, Award, ArrowLeft } from "lucide-react";
+import gemIcon from "../assets/icon_gem.png";
 import { useNavigate } from "react-router-dom";
 import { D, AGENTS, MOCK_PROFILE, getGemImage } from "@lib";
 import { useNotes } from "@hooks";
@@ -25,6 +26,15 @@ export function KidDashboard() {
         profileAvatar={MOCK_PROFILE.avatar}
         profileBgColor={MOCK_PROFILE.bgColor}
       />
+
+      {/* Gem Road Button */}
+      <button
+        onClick={() => navigate("/kid/road")}
+        className="absolute top-6 left-6 z-10 flex items-center gap-1.5 bg-amber-100 hover:bg-amber-200 text-amber-700 px-3 py-1.5 rounded-full font-bold shadow-sm transition-colors border border-amber-200"
+      >
+        <img src={gemIcon} alt="gem" className="w-[18px] h-[18px] object-contain drop-shadow-sm" />
+        <span>{notes.length}</span>
+      </button>
 
       <div className="flex-1 p-6 max-w-md mx-auto w-full flex flex-col gap-8">
         {/* Unread Count Hero */}
