@@ -8,9 +8,9 @@
 - [x] **Parent Flow**: Agent grid, preset drawer, and custom note entry.
 - [x] **Kid Flow**: Unread counts, agent stats, and "Mark as Read" functionality.
 - [x] **Gamification**: Interactive Gem Road with milestones and progress tracking.
-- [x] **History**: Dedicated "All Notes" view with read/unread filtering.
+- [x] **History**: Dedicated "All Notes" view with read/unread filtering and Gem Road integration.
 - [x] **Localization**: Full Hebrew RTL support for all layouts and navigation.
-- [x] **Code Quality**: Passing `eslint` with zero errors; no `any` types in core logic.
+- [x] **Code Quality**: Passing `eslint` and `tsc` build with zero errors. Uses `verbatimModuleSyntax: true` for clean type-safe imports.
 
 ## Key Technical Decisions
 
@@ -24,6 +24,7 @@
 - **Standardized Back Buttons**: Unified sizing (`p-2.5`) and icons (`ArrowRight` for Hebrew).
 - **Icon Polish**: Replaced generic "Drawer" icons with playful Gem assets.
 - **Animation Tweak**: Removed excessive animations from the profile badge to keep the UI snappy.
+- **Build Fix**: Standardized type-only imports (`import type`) to satisfy TypeScript's `verbatimModuleSyntax` rule.
 - **Dead Code Cleanup**: Removed unused assets and generic boilerplate.
 
 ## Next Steps

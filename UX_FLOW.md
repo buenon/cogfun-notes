@@ -33,3 +33,4 @@
 - Full vertical list of all historical success notes.
 - Includes status indicators for read/unread items.
 - Unified header for consistent navigation back to the dashboard.
+- **Gem Road Integration**: Access the achievement road directly from the archive via the top-bar gem button.

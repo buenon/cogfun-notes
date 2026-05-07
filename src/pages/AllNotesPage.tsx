@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import { ArrowRight, History } from "lucide-react";
 import { useNavigate } from "react-router-dom";
-import { MOCK_PROFILE, getGemImage } from "@lib";
+import { MOCK_PROFILE, getGemImage, UI_THEME, cn } from "@lib";
 import { useNotes } from "@hooks";
 import { NotesList, NavigationHeader, ProfileBadge } from "@components";
 import gemIcon from "../assets/icon_gem.png";
@@ -63,7 +63,11 @@ export function AllNotesPage() {
           <motion.div
             initial={{ opacity: 0, y: -10 }}
             animate={{ opacity: 1, y: 0 }}
-            className="bg-indigo-50 border border-indigo-100 p-4 rounded-3xl flex items-center gap-4"
+            className={cn(
+              "border p-4 rounded-3xl flex items-center gap-4",
+              UI_THEME.unread.lightBg,
+              UI_THEME.unread.border
+            )}
           >
             <img
               src={getGemImage(unreadCount) || ""}
@@ -71,10 +75,10 @@ export function AllNotesPage() {
               className="w-20 h-20 object-contain"
             />
             <div>
-              <p className="font-black text-indigo-900 text-xl leading-tight">
+              <p className={cn("font-black text-xl leading-tight", UI_THEME.unread.text)}>
                 {unreadCount}
               </p>
-              <p className="text-indigo-600 font-bold text-sm">
+              <p className={cn("font-bold text-sm", UI_THEME.unread.accent)}>
                 פתקים שעדיין לא נקראו
               </p>
             </div>

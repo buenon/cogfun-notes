@@ -2,7 +2,7 @@ import { motion } from "framer-motion";
 import { Award, ArrowLeft, ArrowRight } from "lucide-react";
 import gemIcon from "../assets/icon_gem.png";
 import { useNavigate, useLocation } from "react-router-dom";
-import { D, AGENTS, MOCK_PROFILE, getGemImage } from "@lib";
+import { D, AGENTS, MOCK_PROFILE, getGemImage, UI_THEME, cn } from "@lib";
 import { useNotes } from "@hooks";
 import { AgentStatCard, NavigationHeader, ProfileBadge, NotesList } from "@components";
 
@@ -57,7 +57,11 @@ export function KidDashboard() {
           className="bg-white p-6 rounded-[2.5rem] shadow-sm border border-slate-100 flex items-center gap-6"
           whileHover={{ scale: 1.02 }}
         >
-          <div className="bg-indigo-100 text-indigo-600 p-2 rounded-3xl min-w-[80px] h-[80px] flex items-center justify-center overflow-hidden">
+          <div className={cn(
+            "p-2 rounded-3xl min-w-[80px] h-[80px] flex items-center justify-center overflow-hidden",
+            UI_THEME.unread.bg,
+            UI_THEME.unread.accent
+          )}>
             {unreadCount > 0 ? (
               <motion.img
                 initial={{ scale: 0, rotate: -20 }}
