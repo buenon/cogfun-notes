@@ -9,6 +9,7 @@ import {
 } from "firebase/firestore";
 import {
   db,
+  NOTES_COLLECTION,
   MOCK_PROFILE,
   type SuccessNote,
   type AgentId,
@@ -30,22 +31,22 @@ export function useNotes(kidId: string = MOCK_PROFILE.id) {
   // Fetching
   useEffect(() => {
     const q = query(
-      collection(db, "notes"),
+      collection(db, NOTES_COLLECTION),
       // where("kidId", "==", kidId) // Temporarily disabled to check if notes exist at all
     );
 
-    console.log("DEBUG: Fetching all notes from Firestore...");
+    console.debug("DEBUG: Fetching all notes from Firestore...");
 
     const unsubscribe = onSnapshot(
       q,
       (snapshot) => {
-        console.log(
+        console.debug(
           "DEBUG: Snapshot received. Doc count:",
           snapshot.docs.length,
         );
         const notesData = snapshot.docs.map((doc) => {
           const data = doc.data();
-          console.log(`DEBUG: Doc[${doc.id}] data:`, data);
+          console.debug(`DEBUG: Doc[${doc.id}] data:`, data);
           return {
             id: doc.id,
             ...data,
@@ -54,7 +55,7 @@ export function useNotes(kidId: string = MOCK_PROFILE.id) {
 
         // Filter and sort manually for now to diagnose filtering issues
         const filteredNotes = notesData.filter((n) => n.kidId === kidId);
-        console.log(
+        console.debug(
           `DEBUG: Filtered notes for kidId[${kidId}]:`,
           filteredNotes.length,
         );
@@ -118,7 +119,7 @@ export function useNotes(kidId: string = MOCK_PROFILE.id) {
 
       setIsSubmitting(true);
       try {
-        await addDoc(collection(db, "notes"), {
+        await addDoc(collection(db, NOTES_COLLECTION), {
           kidId: kidId,
           agentId: selectedAgent.id,
           text: preset,
@@ -148,7 +149,7 @@ export function useNotes(kidId: string = MOCK_PROFILE.id) {
 
   const markAsRead = useCallback(async (noteId: string) => {
     try {
-      const noteRef = doc(db, "notes", noteId);
+      const noteRef = doc(db, NOTES_COLLECTION, noteId);
       await updateDoc(noteRef, {
         isRead: true,
       });
