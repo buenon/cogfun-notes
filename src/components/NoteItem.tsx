@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { CheckCircle2, Clock, Sparkles } from "lucide-react";
-import { type SuccessNote, AGENTS, AGENT_THEME, cn } from "@lib";
+import { type SuccessNote, AGENTS, AGENT_THEME, cn, D } from "@lib";
 
 type NoteItemProps = {
   note: SuccessNote;
@@ -62,17 +62,26 @@ export function NoteItem({
         >
           {note.text}
         </p>
-        {showStatus && (
-          <div className="flex items-center gap-1 mt-1">
-            <Clock size={12} className="text-slate-400" />
-            <span className="text-[10px] font-medium text-slate-400">
-              {new Date(note.createdAt).toLocaleDateString("he-IL", {
-                hour: "2-digit",
-                minute: "2-digit",
-              })}
-            </span>
+          <div className="flex items-center gap-2 mt-1">
+            {showStatus && (
+              <div className="flex items-center gap-1">
+                <Clock size={12} className="text-slate-400" />
+                <span className="text-[10px] font-medium text-slate-400">
+                  {new Date(note.createdAt).toLocaleDateString("he-IL", {
+                    hour: "2-digit",
+                    minute: "2-digit",
+                  })}
+                </span>
+              </div>
+            )}
+            {note.parentName && (
+              <div className="flex items-center gap-1">
+                <span className="text-[10px] font-bold text-slate-400">
+                  {D.noteItem.loggedBy} {note.parentName}
+                </span>
+              </div>
+            )}
           </div>
-        )}
       </div>
 
       {!note.isRead && onMarkAsRead && (

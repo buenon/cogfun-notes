@@ -21,4 +21,5 @@ export type SuccessNote = {
   text: string;
   createdAt: number;
   isRead: boolean;
+  parentName?: string;
 };

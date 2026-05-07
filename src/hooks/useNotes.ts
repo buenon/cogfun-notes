@@ -110,6 +110,12 @@ export function useNotes(kidId: string = MOCK_PROFILE.id) {
     async (preset: string) => {
       if (!selectedAgent || isSubmitting) return;
 
+      const parentName = localStorage.getItem("parentName");
+      if (!parentName) {
+        console.warn("Cannot log note: parentName is missing from localStorage");
+        return;
+      }
+
       setIsSubmitting(true);
       try {
         await addDoc(collection(db, "notes"), {
@@ -118,6 +124,7 @@ export function useNotes(kidId: string = MOCK_PROFILE.id) {
           text: preset,
           isRead: false,
           createdAt: Date.now(),
+          parentName: parentName,
         });
 
         setShowSuccess(true);

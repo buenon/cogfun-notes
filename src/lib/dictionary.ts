@@ -19,6 +19,15 @@ export const D = {
     newNotes: "פתקי הצלחה חדשים!",
     lifetimeSuccesses: "הצלחות לאורך זמן",
   },
+  parentNameModal: {
+    title: "מי רושם את ההצלחה?",
+    description: "נא להזין את השם שלך כדי שהילד ידע ממי ההצלחה (למשל: אבא, אמא, סבא).",
+    inputPlaceholder: "שם ההורה...",
+    saveButton: "שמור והמשך",
+  },
+  noteItem: {
+    loggedBy: "מאת:",
+  },
   agents: {
     stop: {
       name: "מר עצור",

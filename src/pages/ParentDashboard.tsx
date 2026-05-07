@@ -7,6 +7,7 @@ import {
   DashboardHeader,
   PresetDrawer,
   SuccessOverlay,
+  ParentNameModal,
 } from "@components";
 
 export function ParentDashboard() {
@@ -55,6 +56,8 @@ export function ParentDashboard() {
         visible={showSuccess}
         message={D.parentDashboard.successLogged}
       />
+
+      <ParentNameModal />
     </motion.div>
   );
 }
