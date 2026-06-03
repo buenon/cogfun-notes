@@ -23,3 +23,22 @@ export type SuccessNote = {
   isRead: boolean;
   parentName?: string;
 };
+
+export type Prize = {
+  checkpoint: number;
+  title: string;
+  description: string;
+  emoji: string;
+};
+
+export type PrizeClaim = {
+  id: string;
+  kidId: string;
+  checkpoint: number;
+  status: "claimed" | "received";
+  claimedAt: number;
+  receivedAt: number | null;
+  prizeTitle: string;
+  prizeEmoji: string;
+};
+

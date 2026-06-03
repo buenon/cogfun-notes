@@ -1,11 +1,13 @@
 import { motion } from "framer-motion";
-import { ArrowRight, Gift, CheckCircle2 } from "lucide-react";
+import { ArrowRight, Gift, CheckCircle2, Lock, Clock } from "lucide-react";
 import gemIcon from "../assets/icon_gem.png";
+import stardropIcon from "../assets/stardrop.png";
 import { useNavigate } from "react-router-dom";
-import { D, MOCK_PROFILE, cn } from "@lib";
-import { useNotes } from "@hooks";
-import { useEffect, useRef } from "react";
-import { NavigationHeader } from "@components";
+import { D, MOCK_PROFILE, cn, PRIZES, type Prize } from "@lib";
+import { useNotes, usePrizes } from "@hooks";
+import { useEffect, useRef, useState } from "react";
+import { NavigationHeader, BrawlStarsClaimModal } from "@components";
+
 
 const MAX_NOTES = 200;
 const STEP_SIZE = 20;
@@ -16,8 +18,30 @@ const STEPS = Array.from(
 
 export function GemRoadPage() {
   const navigate = useNavigate();
-  const { notes, loading } = useNotes(MOCK_PROFILE.id);
+  const { notes, loading: notesLoading } = useNotes(MOCK_PROFILE.id);
+  const { claims, claimPrize, loading: prizesLoading } = usePrizes(MOCK_PROFILE.id);
   const totalNotes = notes.length;
+  const loading = notesLoading || prizesLoading;
+
+  const [activeClaimPrize, setActiveClaimPrize] = useState<Prize | null>(null);
+  const [modalInitialStage, setModalInitialStage] = useState<"idle" | "revealed">("idle");
+
+  const handleNodeClick = (stepNotes: number) => {
+    const isReached = totalNotes >= stepNotes;
+    if (!isReached) return;
+
+    const prize = PRIZES[stepNotes];
+    if (!prize) return;
+
+    const claimState = claims[stepNotes];
+    if (!claimState) {
+      setModalInitialStage("idle");
+      setActiveClaimPrize(prize);
+    } else {
+      setModalInitialStage("revealed");
+      setActiveClaimPrize(prize);
+    }
+  };
 
   const scrollRef = useRef<HTMLDivElement>(null);
 
@@ -38,6 +62,7 @@ export function GemRoadPage() {
 
   return (
     <motion.div
+
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       exit={{ opacity: 0, y: 20 }}
@@ -93,24 +118,63 @@ export function GemRoadPage() {
                 ? ((totalNotes - prevStep) / STEP_SIZE) * 100
                 : 0;
 
+            const claimState = claims[stepNotes];
+            const isUnclaimed = isReached && !claimState;
+            const isClaimedPending = isReached && claimState?.status === "claimed";
+            const isReceived = isReached && claimState?.status === "received";
+
+            let nodeBgClass = "";
+            if (isReceived) {
+              nodeBgClass = "bg-emerald-500 border-white text-white shadow-lg cursor-pointer";
+            } else if (isClaimedPending) {
+              nodeBgClass = "bg-amber-100 border-amber-400 text-amber-600 shadow-md cursor-pointer";
+            } else if (isUnclaimed) {
+              nodeBgClass = "bg-gradient-to-br from-amber-400 to-yellow-500 border-white text-white cursor-pointer";
+            } else {
+              nodeBgClass = "bg-slate-100 border-slate-200 text-slate-400 opacity-80";
+            }
+
+            if (isCurrentNext) {
+              nodeBgClass = "bg-white border-amber-400 text-amber-500 scale-110 shadow-amber-200 shadow-xl";
+            }
+
             return (
               <div
                 key={stepNotes}
                 className="relative w-full flex flex-col items-center"
               >
+
                 {/* Node */}
                 <motion.div
-                  whileHover={{ scale: 1.05 }}
+                  whileHover={isReached ? { scale: 1.05 } : {}}
+                  onClick={() => isReached && handleNodeClick(stepNotes)}
+                  animate={
+                    isUnclaimed
+                      ? {
+                          scale: [1.1, 1.18, 1.1],
+                          boxShadow: [
+                            "0 20px 25px -5px rgba(245, 158, 11, 0.4), 0 0 0 12px rgba(253, 224, 71, 0.2)",
+                            "0 25px 30px -5px rgba(245, 158, 11, 0.7), 0 0 0 18px rgba(253, 224, 71, 0.4)",
+                            "0 20px 25px -5px rgba(245, 158, 11, 0.4), 0 0 0 12px rgba(253, 224, 71, 0.2)",
+                          ],
+                        }
+                      : {}
+                  }
+                  transition={
+                    isUnclaimed
+                      ? {
+                          repeat: Infinity,
+                          duration: 2,
+                          ease: "easeInOut",
+                        }
+                      : undefined
+                  }
                   className={cn(
-                    "relative z-20 w-24 h-24 rounded-full border-4 flex flex-col items-center justify-center shadow-lg transition-all duration-500",
-                    isReached
-                      ? "bg-amber-500 border-white text-white"
-                      : isCurrentNext
-                        ? "bg-white border-amber-400 text-amber-500 scale-110 shadow-amber-200 shadow-xl"
-                        : "bg-slate-100 border-slate-200 text-slate-400 opacity-80",
+                    "relative z-20 w-24 h-24 rounded-full border-4 flex flex-col items-center justify-center shadow-lg transition-all duration-500 select-none",
+                    nodeBgClass
                   )}
                 >
-                  {isReached ? (
+                  {isReceived ? (
                     <motion.div
                       initial={{ scale: 0 }}
                       animate={{ scale: 1 }}
@@ -118,13 +182,34 @@ export function GemRoadPage() {
                     >
                       <CheckCircle2 size={32} className="mb-1" />
                     </motion.div>
-                  ) : (
+                  ) : isClaimedPending ? (
+                    <motion.div
+                      animate={{ scale: [1, 1.1, 1], rotate: [0, 360, 360] }}
+                      transition={{ repeat: Infinity, duration: 4, ease: "easeInOut" }}
+                      className="flex flex-col items-center"
+                    >
+                      <Clock size={32} className="mb-1 text-amber-600" />
+                    </motion.div>
+                  ) : isUnclaimed ? (
+                    <motion.img
+                      src={stardropIcon}
+                      alt="Starr Drop"
+                      animate={{ scale: [1, 1.15, 1], rotate: [0, 6, -6, 0] }}
+                      transition={{ repeat: Infinity, duration: 2, ease: "easeInOut" }}
+                      className="w-12 h-12 object-contain mb-1 drop-shadow-[0_2px_4px_rgba(0,0,0,0.15)] cursor-pointer"
+                    />
+                  ) : isCurrentNext ? (
                     <Gift
                       size={32}
-                      className={cn("mb-1", isCurrentNext && "animate-bounce")}
+                      className="mb-1 text-amber-400 animate-bounce"
+                    />
+                  ) : (
+                    <Lock
+                      size={32}
+                      className="mb-1 text-slate-300"
                     />
                   )}
-                  <span className="font-black text-2xl">{stepNotes}</span>
+                  <span className="font-black text-2xl leading-none">{stepNotes}</span>
 
                   {/* Pulsing effect for the next target */}
                   {isCurrentNext && (
@@ -207,6 +292,18 @@ export function GemRoadPage() {
           </div>
         </div>
       </div>
+
+      {activeClaimPrize && (
+        <BrawlStarsClaimModal
+          isOpen={!!activeClaimPrize}
+          prize={activeClaimPrize}
+          initialStage={modalInitialStage}
+          claimStatus={claims[activeClaimPrize.checkpoint]?.status || null}
+          onClaim={() => claimPrize(activeClaimPrize.checkpoint)}
+          onClose={() => setActiveClaimPrize(null)}
+        />
+      )}
     </motion.div>
+
   );
 }

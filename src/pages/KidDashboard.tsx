@@ -2,8 +2,8 @@ import { motion } from "framer-motion";
 import { Award, ArrowLeft, ArrowRight } from "lucide-react";
 import gemIcon from "../assets/icon_gem.png";
 import { useNavigate, useLocation } from "react-router-dom";
-import { D, AGENTS, MOCK_PROFILE, getGemImage, UI_THEME, cn } from "@lib";
-import { useNotes } from "@hooks";
+import { D, AGENTS, MOCK_PROFILE, getGemImage, UI_THEME, cn, PRIZES } from "@lib";
+import { useNotes, usePrizes } from "@hooks";
 import { AgentStatCard, NavigationHeader, ProfileBadge, NotesList } from "@components";
 
 export function KidDashboard() {
@@ -12,8 +12,12 @@ export function KidDashboard() {
   const { notes, stats, unreadCount, loading, markAsRead } = useNotes(
     MOCK_PROFILE.id,
   );
+  const { claims } = usePrizes(MOCK_PROFILE.id);
 
   const unreadNotes = notes.filter((n) => !n.isRead);
+  const hasPendingPrize = Object.keys(PRIZES)
+    .map(Number)
+    .some((checkpoint) => notes.length >= checkpoint && !claims[checkpoint]);
 
   return (
     <motion.div
@@ -43,10 +47,16 @@ export function KidDashboard() {
         rightAction={
           <button
             onClick={() => navigate("/kid/road")}
-            className="flex items-center gap-1.5 bg-amber-100 hover:bg-amber-200 text-amber-700 px-3 py-1.5 rounded-full font-bold shadow-sm transition-colors border border-amber-200"
+            className="relative flex items-center gap-1.5 bg-amber-100 hover:bg-amber-200 text-amber-700 px-3 py-1.5 rounded-full font-bold shadow-sm transition-colors border border-amber-200"
           >
             <img src={gemIcon} alt="gem" className="w-[18px] h-[18px] object-contain drop-shadow-sm" />
             <span>{notes.length}</span>
+            {hasPendingPrize && (
+              <span className="absolute -top-1 -right-1 flex h-3 w-3">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75"></span>
+                <span className="relative inline-flex rounded-full h-3 w-3 bg-red-500 border border-white"></span>
+              </span>
+            )}
           </button>
         }
       />

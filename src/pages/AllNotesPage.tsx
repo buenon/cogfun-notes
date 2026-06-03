@@ -1,14 +1,18 @@
 import { motion } from "framer-motion";
 import { ArrowRight, History } from "lucide-react";
 import { useNavigate } from "react-router-dom";
-import { D, MOCK_PROFILE, getGemImage, UI_THEME, cn } from "@lib";
-import { useNotes } from "@hooks";
+import { D, MOCK_PROFILE, getGemImage, UI_THEME, cn, PRIZES } from "@lib";
+import { useNotes, usePrizes } from "@hooks";
 import { NotesList, NavigationHeader, ProfileBadge } from "@components";
 import gemIcon from "../assets/icon_gem.png";
 
 export function AllNotesPage() {
   const navigate = useNavigate();
   const { notes, markAsRead, loading, unreadCount } = useNotes(MOCK_PROFILE.id);
+  const { claims } = usePrizes(MOCK_PROFILE.id);
+  const hasPendingPrize = Object.keys(PRIZES)
+    .map(Number)
+    .some((checkpoint) => notes.length >= checkpoint && !claims[checkpoint]);
 
   return (
     <motion.div
@@ -36,7 +40,7 @@ export function AllNotesPage() {
         rightAction={
           <button
             onClick={() => navigate("/kid/road")}
-            className="flex items-center gap-1.5 bg-amber-100 hover:bg-amber-200 text-amber-700 px-3 py-1.5 rounded-full font-bold shadow-sm transition-colors border border-amber-200"
+            className="relative flex items-center gap-1.5 bg-amber-100 hover:bg-amber-200 text-amber-700 px-3 py-1.5 rounded-full font-bold shadow-sm transition-colors border border-amber-200"
           >
             <img
               src={gemIcon}
@@ -44,6 +48,12 @@ export function AllNotesPage() {
               className="w-[18px] h-[18px] object-contain drop-shadow-sm"
             />
             <span>{notes.length}</span>
+            {hasPendingPrize && (
+              <span className="absolute -top-1 -right-1 flex h-3 w-3">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75"></span>
+                <span className="relative inline-flex rounded-full h-3 w-3 bg-red-500 border border-white"></span>
+              </span>
+            )}
           </button>
         }
       />

@@ -10,4 +10,6 @@ export * from "./ParentNameModal";
 export * from "./NoteItem";
 export * from "./NotesList";
 export * from "./NavigationHeader";
+export * from "./BrawlStarsClaimModal";
+
 

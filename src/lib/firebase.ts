@@ -15,3 +15,5 @@ export const db = getFirestore(app);
 
 // Collection name changes based on environment to avoid polluting production data
 export const NOTES_COLLECTION = import.meta.env.DEV ? "dev-notes" : "notes";
+export const PRIZES_COLLECTION = import.meta.env.DEV ? "dev-prizes" : "prizes";
+
