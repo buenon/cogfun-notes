@@ -110,7 +110,7 @@ export function KidDashboard() {
           onClick={() => navigate("/kid/notes")}
           className="mt-4 flex items-center justify-center gap-2 p-5 bg-slate-200 text-slate-600 rounded-3xl font-black font-display text-lg hover:bg-slate-300 transition-colors"
         >
-          <span>לכל הפתקים שלי</span>
+          <span>{D.kidDashboard.viewAllNotes}</span>
           <ArrowLeft size={20} />
         </button>
       </div>

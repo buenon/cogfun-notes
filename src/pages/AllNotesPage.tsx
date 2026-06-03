@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import { ArrowRight, History } from "lucide-react";
 import { useNavigate } from "react-router-dom";
-import { MOCK_PROFILE, getGemImage, UI_THEME, cn } from "@lib";
+import { D, MOCK_PROFILE, getGemImage, UI_THEME, cn } from "@lib";
 import { useNotes } from "@hooks";
 import { NotesList, NavigationHeader, ProfileBadge } from "@components";
 import gemIcon from "../assets/icon_gem.png";
@@ -55,7 +55,7 @@ export function AllNotesPage() {
             <History size={24} />
           </div>
           <h1 className="text-2xl font-black text-slate-800">
-            היסטוריית הצלחות
+            {D.allNotesPage.title}
           </h1>
         </div>
 
@@ -79,7 +79,7 @@ export function AllNotesPage() {
                 {unreadCount}
               </p>
               <p className={cn("font-bold text-sm", UI_THEME.unread.accent)}>
-                פתקים שעדיין לא נקראו
+                {D.allNotesPage.unreadNotes}
               </p>
             </div>
           </motion.div>
@@ -87,14 +87,14 @@ export function AllNotesPage() {
 
         {loading ? (
           <div className="flex justify-center p-12 text-slate-400 font-bold">
-            טוען...
+            {D.allNotesPage.loading}
           </div>
         ) : (
           <NotesList
             notes={notes}
             onMarkAsRead={markAsRead}
             showStatus={true}
-            emptyMessage="עדיין אין הצלחות רשומות. המשיכו לנסות!"
+            emptyMessage={D.allNotesPage.emptyMessage}
           />
         )}
       </div>
