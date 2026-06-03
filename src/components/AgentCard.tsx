@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { AGENT_THEME, D, cn, type Agent } from "@lib";
+import { AGENT_THEME, cn, type Agent } from "@lib";
 
 type AgentCardProps = {
   agent: Agent;
@@ -19,29 +19,26 @@ export function AgentCard({ agent, index, onSelect }: AgentCardProps) {
       whileTap={{ scale: 0.98 }}
       onClick={() => onSelect(agent)}
       className={cn(
-        "flex items-center p-6 rounded-3xl border-b-4 transition-all shadow-sm relative overflow-hidden",
+        "flex flex-col items-center justify-center p-2 pb-4 rounded-3xl border-b-4 transition-all shadow-sm relative overflow-hidden text-center w-full h-full",
         theme.bg,
         theme.text,
         theme.border,
         theme.hoverBg,
       )}
     >
-      <div className="me-6 z-10 bg-white/40 p-4 rounded-2xl w-32 h-32 flex items-center justify-center shrink-0">
+      <div className="z-10 bg-white/40 p-1.5 rounded-[20px] w-[80%] max-w-[150px] aspect-square flex items-center justify-center shrink-0 mb-2">
         <img
           src={agent.image}
           alt={agent.name}
-          width={96}
-          height={96}
+          width={110}
+          height={110}
           loading="eager"
           decoding="sync"
-          className="w-24 h-24 object-contain aspect-square"
+          className="w-[90%] h-[90%] object-contain aspect-square"
         />
       </div>
-      <div className="text-start z-10">
-        <h2 className="text-2xl font-black mb-1">{agent.name}</h2>
-        <p className="text-sm font-semibold opacity-70">
-          {D.parentDashboard.logMoment} {agent.name}
-        </p>
+      <div className="z-10 flex flex-col items-center">
+        <h2 className="text-2xl font-black leading-tight">{agent.name}</h2>
       </div>
     </motion.button>
   );

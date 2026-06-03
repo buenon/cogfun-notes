@@ -26,7 +26,7 @@ export function ParentDashboard() {
       initial={{ opacity: 0, x: 20 }}
       animate={{ opacity: 1, x: 0 }}
       exit={{ opacity: 0, x: -20 }}
-      className="flex flex-col min-h-screen bg-slate-50 relative"
+      className="flex flex-col h-[100dvh] bg-slate-50 relative overflow-hidden"
     >
       <NavigationHeader
         center={
@@ -40,12 +40,12 @@ export function ParentDashboard() {
         }
       />
 
-      <div className="flex-1 p-6 max-w-md mx-auto w-full flex flex-col">
-        <div className="mb-10 text-center">
-          <h1 className="text-3xl font-extrabold text-slate-800 mb-2">
+      <div className="flex-1 p-4 pb-6 max-w-md mx-auto w-full flex flex-col overflow-hidden">
+        <div className="mb-6 text-center">
+          <h1 className="text-2xl font-black text-slate-800 mb-1">
             {D.parentDashboard.headerCheeringFor}
           </h1>
-          <p className="text-slate-500">{D.parentDashboard.tapAgent}</p>
+          <p className="text-sm text-slate-500">{D.parentDashboard.tapAgent}</p>
         </div>
 
         <AgentGrid onSelectAgent={selectAgent} />

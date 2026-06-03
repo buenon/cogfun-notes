@@ -7,7 +7,7 @@ type AgentGridProps = {
 
 export function AgentGrid({ onSelectAgent }: AgentGridProps) {
   return (
-    <div className="flex flex-col gap-6 flex-1 justify-center">
+    <div className="grid grid-cols-2 grid-rows-2 gap-3 flex-1">
       {Object.values(AGENTS).map((agent, index) => (
         <AgentCard
           key={agent.id}
