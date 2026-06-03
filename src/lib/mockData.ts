@@ -2,6 +2,7 @@ import { D, type Agent, type AgentId, type KidProfile } from "@lib";
 import mrStop from "@assets/mr-stop.png";
 import mrCheck from "@assets/mr-check.png";
 import mrEffort from "@assets/mr-effort.png";
+import mrCalm from "@assets/mr-calm.png";
 
 export const MOCK_PROFILE: KidProfile = {
   id: "bar",
@@ -28,5 +29,11 @@ export const AGENTS: Record<AgentId, Agent> = {
     name: D.agents.effort.name,
     image: mrEffort,
     presets: D.agents.effort.presets,
+  },
+  calm: {
+    id: "calm",
+    name: D.agents.calm.name,
+    image: mrCalm,
+    presets: D.agents.calm.presets,
   },
 };

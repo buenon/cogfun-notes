@@ -34,6 +34,14 @@ export const AGENT_THEME: Record<AgentId, ThemeClasses> = {
     accent: "text-emerald-600",
     lightBg: "bg-emerald-50",
   },
+  calm: {
+    bg: "bg-sky-100",
+    text: "text-sky-900",
+    border: "border-sky-200",
+    hoverBg: "hover:bg-sky-50",
+    accent: "text-sky-600",
+    lightBg: "bg-sky-50",
+  },
 };
 
 export const UI_THEME = {

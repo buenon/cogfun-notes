@@ -91,6 +91,7 @@ export function useNotes(kidId: string = MOCK_PROFILE.id) {
       stop: 0,
       check: 0,
       effort: 0,
+      calm: 0,
     };
 
     notes.forEach((note) => {

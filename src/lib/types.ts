@@ -1,4 +1,4 @@
-export type AgentId = "stop" | "check" | "effort";
+export type AgentId = "stop" | "check" | "effort" | "calm";
 
 export type Agent = {
   id: AgentId;
