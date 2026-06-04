@@ -9,7 +9,7 @@
 - [x] **Kid Flow**: Unread counts, agent stats, and "Mark as Read" functionality.
 - [x] **Gamification**: Interactive Gem Road with milestones and progress tracking.
 - [x] **History**: Dedicated "All Notes" view with read/unread filtering and Gem Road integration.
-- [x] **Localization**: Full Hebrew RTL support for all layouts and navigation.
+- [x] **Localization**: Full Hebrew RTL support for all layouts, navigation, and dictionary-driven text. No hardcoded user-facing strings.
 - [x] **Code Quality**: Passing `eslint` and `tsc` build with zero errors. Uses `verbatimModuleSyntax: true` for clean type-safe imports.
 
 ## Key Technical Decisions
@@ -18,6 +18,8 @@
 - **ProfileBadge**: Interactive identity component that standardizes how the kid's name/avatar is displayed.
 - **Gems System**: Dynamic gem pack images based on the number of unread/total notes.
 - **Dev Tools**: Global `generateNotes` and `clearNotes` exposed in the console for testing.
+- **Dictionary Centralization**: All user-facing UI strings in components and pages are defined in `src/lib/dictionary.ts` under a central exported object `D`. Import `D` via the `@lib` alias. Static data source files (like `src/lib/prizes.ts` or agent presets) keep their native strings directly in code.
+
 
 ## Recent UI Refinements
 

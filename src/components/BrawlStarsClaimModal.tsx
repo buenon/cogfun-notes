@@ -1,8 +1,26 @@
-import { useState, useEffect } from "react";
+import { useState, useMemo } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Star } from "lucide-react";
-import { type Prize } from "@lib";
+import { type Prize, D } from "@lib";
 import stardropIcon from "../assets/stardrop.png";
+
+const SPARKLES_PRESETS = [
+  { id: 0, left: "12%", top: "25%", duration: 2.5, size: 12 },
+  { id: 1, left: "85%", top: "45%", duration: 3.1, size: 20 },
+  { id: 2, left: "30%", top: "70%", duration: 2.1, size: 16 },
+  { id: 3, left: "75%", top: "15%", duration: 3.8, size: 10 },
+  { id: 4, left: "45%", top: "80%", duration: 2.9, size: 18 },
+  { id: 5, left: "10%", top: "60%", duration: 3.4, size: 14 },
+  { id: 6, left: "90%", top: "85%", duration: 2.3, size: 22 },
+  { id: 7, left: "60%", top: "35%", duration: 3.6, size: 8 },
+  { id: 8, left: "20%", top: "40%", duration: 2.8, size: 15 },
+  { id: 9, left: "55%", top: "90%", duration: 3.3, size: 13 },
+  { id: 10, left: "80%", top: "65%", duration: 2.6, size: 17 },
+  { id: 11, left: "40%", top: "10%", duration: 3.0, size: 11 },
+  { id: 12, left: "5%", top: "95%", duration: 3.9, size: 9 },
+  { id: 13, left: "95%", top: "5%", duration: 2.2, size: 24 },
+  { id: 14, left: "65%", top: "75%", duration: 3.5, size: 19 },
+];
 
 interface BrawlStarsClaimModalProps {
   isOpen: boolean;
@@ -24,13 +42,16 @@ export function BrawlStarsClaimModal({
   claimStatus = null,
 }: BrawlStarsClaimModalProps) {
   const [stage, setStage] = useState<ClaimStage>(initialStage);
+  const [prevIsOpen, setPrevIsOpen] = useState(isOpen);
 
-  // Sync stage with initialStage when modal opens
-  useEffect(() => {
+  if (isOpen !== prevIsOpen) {
+    setPrevIsOpen(isOpen);
     if (isOpen) {
       setStage(initialStage);
     }
-  }, [isOpen, initialStage]);
+  }
+
+  const sparkles = useMemo(() => SPARKLES_PRESETS, []);
 
 
   const [particles, setParticles] = useState<{
@@ -40,6 +61,7 @@ export function BrawlStarsClaimModal({
     size: number;
     color: string;
     rotation: number;
+    borderRadius: string;
   }[]>([]);
 
   if (!isOpen) return null;
@@ -65,6 +87,7 @@ export function BrawlStarsClaimModal({
           Math.floor(Math.random() * 7)
         ],
         rotation: Math.random() * 360,
+        borderRadius: Math.random() > 0.5 ? "50%" : "20%",
       };
     });
     setParticles(newParticles);
@@ -100,7 +123,7 @@ export function BrawlStarsClaimModal({
           {stage !== "revealed" ? (
             <div className="flex flex-col items-center py-8">
               <h2 className="text-3xl font-black font-display text-white mb-6 drop-shadow-[0_2px_4px_rgba(0,0,0,0.4)]">
-                הגעת ליעד!
+                {D.brawlStarsClaimModal.milestoneReached}
               </h2>
 
               {/* Bouncy / Shaking Starr Drop Container */}
@@ -150,14 +173,14 @@ export function BrawlStarsClaimModal({
                       width: p.size,
                       height: p.size,
                       backgroundColor: p.color,
-                      borderRadius: Math.random() > 0.5 ? "50%" : "20%",
+                      borderRadius: p.borderRadius,
                     }}
                   />
                 ))}
               </div>
 
               <p className="mt-8 text-lg font-black text-amber-100 bg-amber-800/40 px-6 py-2 rounded-full border border-amber-600/50">
-                {stage === "shaking" ? "פותח..." : "לחץ על הכוכב כדי לפתוח"}
+                {stage === "shaking" ? D.brawlStarsClaimModal.opening : D.brawlStarsClaimModal.tapToOpen}
               </p>
             </div>
           ) : (
@@ -171,13 +194,13 @@ export function BrawlStarsClaimModal({
             >
               {/* Confetti/Background sparkles */}
               <div className="absolute inset-0 z-0 pointer-events-none">
-                {Array.from({ length: 15 }).map((_, i) => (
+                {sparkles.map((star) => (
                   <motion.div
-                    key={i}
+                    key={star.id}
                     className="absolute text-yellow-300"
                     style={{
-                      left: `${Math.random() * 100}%`,
-                      top: `${Math.random() * 100}%`,
+                      left: star.left,
+                      top: star.top,
                     }}
                     animate={{
                       scale: [0.5, 1, 0.5],
@@ -185,11 +208,11 @@ export function BrawlStarsClaimModal({
                       rotate: [0, 360],
                     }}
                     transition={{
-                      duration: 2 + Math.random() * 2,
+                      duration: star.duration,
                       repeat: Infinity,
                     }}
                   >
-                    <Star size={Math.random() * 16 + 8} fill="currentColor" />
+                    <Star size={star.size} fill="currentColor" />
                   </motion.div>
                 ))}
               </div>
@@ -212,11 +235,11 @@ export function BrawlStarsClaimModal({
               {/* Status Indicator */}
               {claimStatus === "received" ? (
                 <div className="relative z-10 bg-emerald-500 text-white font-black text-lg px-6 py-2.5 rounded-full border-4 border-emerald-300 shadow-md flex items-center justify-center gap-2 mb-8">
-                  <span>הפרס התקבל! 🎉</span>
+                  <span>{D.brawlStarsClaimModal.prizeReceived}</span>
                 </div>
               ) : (
                 <div className="relative z-10 bg-amber-500 text-white font-black text-lg px-6 py-2.5 rounded-full border-4 border-amber-300 shadow-md flex items-center justify-center gap-2 mb-8 animate-pulse">
-                  <span>ממתין לאישור הורים ⏳</span>
+                  <span>{D.brawlStarsClaimModal.waitingParentApproval}</span>
                 </div>
               )}
 
@@ -227,7 +250,7 @@ export function BrawlStarsClaimModal({
                 onClick={handleFinish}
                 className="relative z-10 w-full py-4 bg-emerald-500 hover:bg-emerald-600 text-white font-black text-xl rounded-2xl border-b-8 border-emerald-700 shadow-lg transition-all"
               >
-                יש! תודה!
+                {D.brawlStarsClaimModal.thankYou}
               </motion.button>
             </motion.div>
           )}

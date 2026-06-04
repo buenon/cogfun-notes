@@ -51,7 +51,7 @@ export function ParentDashboard() {
           <div className="mb-4 p-4 bg-amber-50 border-2 border-amber-200 rounded-3xl shrink-0">
             <h3 className="text-lg font-black text-amber-800 mb-3 flex items-center gap-2">
               <Gift size={20} className="text-amber-500 animate-bounce" />
-              <span>פרסים שממתינים לחלוקה ({pendingPrizes.length})</span>
+              <span>{D.parentDashboard.pendingPrizes} ({pendingPrizes.length})</span>
             </h3>
             <div className="flex flex-col gap-2 max-h-[140px] overflow-y-auto pr-1">
               {pendingPrizes.map((prize) => (
@@ -66,7 +66,7 @@ export function ParentDashboard() {
                         {prize.prizeTitle}
                       </p>
                       <p className="text-xs font-bold text-slate-500">
-                        {MOCK_PROFILE.name} הגיע/ה ל-{prize.checkpoint} הצלחות!
+                        {MOCK_PROFILE.name} {D.parentDashboard.prizeReachedAt}{prize.checkpoint} {D.parentDashboard.successes}
                       </p>
                     </div>
                   </div>
@@ -75,7 +75,7 @@ export function ParentDashboard() {
                     className="flex items-center justify-center p-2 bg-emerald-500 hover:bg-emerald-600 active:scale-95 text-white rounded-xl shadow-md border-b-4 border-emerald-700 transition-all font-black text-xs gap-1 whitespace-nowrap cursor-pointer"
                   >
                     <Check size={14} strokeWidth={3} />
-                    <span>קיבל/ה</span>
+                    <span>{D.parentDashboard.receivedButton}</span>
                   </button>
                 </div>
               ))}

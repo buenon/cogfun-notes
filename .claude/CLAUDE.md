@@ -30,3 +30,7 @@
 - **Icons:** Lucide-React.
 - **Architecture:** Feature-based modular structure with path aliases (@lib, @components). Standardized navigation via `NavigationHeader` and `ProfileBadge`.
 - **Localization:** Full RTL/Hebrew support.
+  - **Dictionary Rules:** All user-facing strings in component or page code (labels, button texts, page headers, etc.) must go in `src/lib/dictionary.ts` under the exported constant `D`. Do not hardcode user-facing strings in components or pages.
+  - **Data Source Exception:** Static raw data files (such as `src/lib/prizes.ts` or agent definition presets) are kept with their native strings and do not need to go in the dictionary.
+  - **Imports:** Import `D` using the `@lib` alias in components/pages.
+

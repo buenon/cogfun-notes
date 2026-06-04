@@ -13,6 +13,10 @@ export const D = {
     logMoment: "רשום רגע של",
     customNote: "כתוב פתק אישי...",
     successLogged: "!הצלחה נרשמה",
+    pendingPrizes: "פרסים שממתינים לחלוקה",
+    prizeReachedAt: "הגיע/ה ל-",
+    successes: "הצלחות!",
+    receivedButton: "קיבל/ה",
   },
   kidDashboard: {
     box: "הקופסה של",
@@ -66,5 +70,13 @@ export const D = {
     unreadNotes: "פתקים שעדיין לא נקראו",
     loading: "טוען...",
     emptyMessage: "עדיין אין הצלחות רשומות. המשיכו לנסות!",
+  },
+  brawlStarsClaimModal: {
+    milestoneReached: "הגעת ליעד!",
+    opening: "פותח...",
+    tapToOpen: "לחץ על הכוכב כדי לפתוח",
+    prizeReceived: "הפרס התקבל! 🎉",
+    waitingParentApproval: "ממתין לאישור הורים ⏳",
+    thankYou: "יש! תודה!",
   },
 };
